@@ -1,4 +1,4 @@
-import InputBox from "./InputBox";
+import InputBox from './InputBox'
 
 export default function MaterialRequestModal() {
   return (
@@ -46,5 +46,5 @@ export default function MaterialRequestModal() {
         </div>
       </form>
     </div>
-  );
+  )
 }
