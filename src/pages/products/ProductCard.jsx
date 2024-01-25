@@ -1,0 +1,21 @@
+import productImage from '../../assets/image 14.svg';
+import { useNavigate } from 'react-router-dom';
+
+const ProductCard = ({ title, company, image, price }) => {
+    const navigate = useNavigate();
+    const handleCardClick = () =>{
+        navigate('/product/detail');
+    }
+  return (
+    <div className="border m-4 rounded-2xl overflow-hidden" onClick={handleCardClick}>
+      <img src={productImage} alt={title} className="w-full h-48 object-cover" />
+      <div className="px-8 py-5">
+        <div className="text-gray-500 text-sm font-light">{company}</div>
+        <div className="font-bold text-lg">{title}</div>
+        <div className="text-red-500 font-semibold text-xl text-right">{`$${price}`}</div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;

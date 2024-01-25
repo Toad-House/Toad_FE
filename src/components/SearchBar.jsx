@@ -13,7 +13,7 @@ const SearchBar = ({ currentPage, onSearch }) => {
   };
 
   return (
-    <div className="flex justify-center mt-4 font-light text-base">
+    <div className="flex justify-center mt-8 font-light text-base">
       <input
         type="text"
         value={searchTerm}
