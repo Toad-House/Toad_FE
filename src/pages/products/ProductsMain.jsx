@@ -22,10 +22,10 @@ const ProductsMain = () => {
       <div className="p-12 font-bold text-4xl">
         <Navigation />
         <TapBar def={'products'}/>
-        <SearchBar currentPage={'material'}/>
+        <SearchBar currentPage={'products'}/>
 
         {/* 3열 격자로 상품을 나타내기 */}
-      <div className="grid grid-cols-3 gap-2 mt-14">
+      <div className="grid grid-cols-3 gap-2 mt-10">
         {sampleProducts.map(product => (
           <ProductCard
             key={product.id}
