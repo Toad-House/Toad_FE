@@ -6,7 +6,6 @@ function Navigation() {
   const [isMenuVisible, setMenuVisible] = useState(false)
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
 
-  // Step 2: Add event handler function
   const toggleMenu = () => {
     setMenuVisible(!isMenuVisible)
   }
