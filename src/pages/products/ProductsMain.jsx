@@ -1,31 +1,43 @@
 import  Navigation from "../../components/Navigation";
-import  TapBar  from "../../components/TapBar";
+import  TabBar  from "../../components/TabBar";
 import SearchBar from "../../components/SearchBar";
 import ProductCard from "./ProductCard";
+import { useStore } from "../../store/useStore";
+import { useNavigate } from 'react-router-dom';
 
 
 const sampleProducts = [
-  { id: 1, title: '상품 1', company: '회사 A', image: '../assets/Rectangle 5.svg', price: 29.99 },
-  { id: 2, title: '상품 2', company: '회사 B', image: '이미지 링크 2', price: 39.99 },
-  { id: 3, title: '상품 3', company: '회사 C', image: '이미지 링크 3', price: 49.99 },
-  { id: 4, title: '상품 1', company: '회사 A', image: '../assets/Rectangle 5.svg', price: 29.99 },
-  { id: 5, title: '상품 2', company: '회사 B', image: '이미지 링크 2', price: 39.99 },
-  { id: 6, title: '상품 3', company: '회사 C', image: '이미지 링크 3', price: 49.99 },
+  { id: 1, title: 'PRODUCT 1', company: 'COMPANY A', image: '../assets/Rectangle 5.svg', price: 29.99 },
+  { id: 2, title: 'PRODUCT 2', company: 'COMPANY B', image: '이미지 링크 2', price: 39.99 },
+  { id: 3, title: 'PRODUCT 3', company: 'COMPANY C', image: '이미지 링크 3', price: 49.99 },
+  { id: 4, title: 'PRODUCT 1', company: 'COMPANY A', image: '../assets/Rectangle 5.svg', price: 29.99 },
+  { id: 5, title: 'PRODUCT 2', company: 'COMPANY B', image: '이미지 링크 2', price: 39.99 },
+  { id: 6, title: 'PRODUCT 3', company: 'COMPANY C', image: '이미지 링크 3', price: 49.99 },
   // ... 더 많은 상품 데이터
 ];
 
 
 const ProductsMain = () => {
 
+  const mode = useStore((state) => state.mode);
+  const navigate = useNavigate();
+
+
   return (
     <div>
-      <div className="p-12 font-bold text-4xl">
+      <div className="p-12">
         <Navigation />
-        <TapBar def={'products'}/>
+        <div className="flex relative">
+          <TabBar def={'products'} />
+          {mode ==='seller' && <div onClick={() => {navigate("/product/upload");}}
+          className="absolute right-5 top-5 bg-gray-400 shadow-md rounded-md text-white text-base font-medium p-4 w-fit h-fit ">
+            Add New Product
+          </div>}
+          
+        </div>
         <SearchBar currentPage={'products'}/>
 
-        {/* 3열 격자로 상품을 나타내기 */}
-      <div className="grid grid-cols-3 gap-2 mt-10">
+      <div className="grid grid-cols-3 gap-[3%] mt-16 px-20">
         {sampleProducts.map(product => (
           <ProductCard
             key={product.id}

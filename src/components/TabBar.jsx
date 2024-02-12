@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const TapBar = ({ def }) => {
+const TabBar = ({ def }) => {
   const [selectedTab, setSelectedTab] = useState(def);
 
   const handleTabClick = (tab) => {
@@ -11,7 +11,7 @@ const TapBar = ({ def }) => {
   };
 
   return (
-    <div className="bg-white p-4">
+    <div className="bg-white p-4 mt-10 w-full">
       <div className="flex flex-col-2">
         <TabButton
           tab="material"
@@ -47,4 +47,4 @@ const TabButton = ({ tab, label, selected, onClick }) => {
   );
 };
 
-export default TapBar;
+export default TabBar;
