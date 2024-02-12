@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar";
 const Main = () => {
   return (
     <>
-      <div className="p-12 font-bold text-4xl">
+      <div className="p-12">
         <Navigation />
         <TabBar />
         <SearchBar />

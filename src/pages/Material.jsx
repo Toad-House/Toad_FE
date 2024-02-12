@@ -6,7 +6,7 @@ const Material = () => {
   return (
     <div>
       
-      <div className="p-12 font-bold text-4xl">
+      <div className="p-12">
         <Navigation />
         <TabBar def={'material'}/>
         <SearchBar currentPage={'material'}/>
