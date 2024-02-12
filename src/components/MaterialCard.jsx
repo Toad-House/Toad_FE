@@ -1,22 +1,22 @@
 const posts = [
   {
     id: 1,
-    title: "waste leather",
-    href: "#",
+    title: 'waste leather',
+    href: '#',
     image:
-      "https://qi-o.qoo10cdn.com/goods_image_big/1/0/3/9/10695981039_l.jpg",
-    description: "소가죽입니다",
-    date: "2020-03-16",
-    category: { title: "leather", href: "#" },
+      'https://qi-o.qoo10cdn.com/goods_image_big/1/0/3/9/10695981039_l.jpg',
+    description: '소가죽입니다',
+    date: '2020-03-16',
+    category: { title: 'leather', href: '#' },
     author: {
-      name: "seokchan",
-      role: "seller",
-      href: "#",
+      name: 'seokchan',
+      role: 'seller',
+      href: '#',
       imageUrl:
-        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   },
-];
+]
 
 function MaterialCard() {
   return (
@@ -66,7 +66,7 @@ function MaterialCard() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default MaterialCard;
+export default MaterialCard

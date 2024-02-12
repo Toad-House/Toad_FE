@@ -1,26 +1,28 @@
-import React, { useState } from "react";
-import logo from "../assets/logo.png";
-import user from "../assets/user.png";
+import React, { useState } from 'react'
+import logo from '../assets/logo.png'
+import user from '../assets/user.png'
+import { useNavigate } from 'react-router-dom'
 
 function Navigation() {
-  const [isMenuVisible, setMenuVisible] = useState(false);
-  const [isMobileMenuVisible, setMobileMenuVisible] = useState(false);
+  const [isMenuVisible, setMenuVisible] = useState(false)
+  const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
 
   // Step 2: Add event handler function
   const toggleMenu = () => {
-    setMenuVisible(!isMenuVisible);
-  };
+    setMenuVisible(!isMenuVisible)
+  }
 
   const toggleMoblieMenu = () => {
-    setMobileMenuVisible(!isMobileMenuVisible);
-  };
+    setMobileMenuVisible(!isMobileMenuVisible)
+  }
+  const navigate = useNavigate();
 
   return (
-    <nav className="bg-white shadow">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white">
+      <div className="mx-4 px-2 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0" onClick={() =>{navigate("/");}}>
               <img className="h-32 w-32" src={logo} alt="Toad House" />
             </div>
           </div>
@@ -29,19 +31,19 @@ function Navigation() {
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a
-                    href="#"
+                    href="/"
                     className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                   >
                     SELLER LOGIN
                   </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                   >
                     BUYER LOGIN
                   </a>
                   <a
-                    href="#"
+                    href="/"
                     className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                   >
                     SIGN UP
@@ -107,7 +109,7 @@ function Navigation() {
                     id="navbar-menu-box"
                   >
                     <a
-                      href="#"
+                      href="/"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
@@ -116,7 +118,7 @@ function Navigation() {
                       Your Profile
                     </a>
                     <a
-                      href="#"
+                      href="/"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
@@ -125,7 +127,7 @@ function Navigation() {
                       Settings
                     </a>
                     <a
-                      href="#"
+                      href="/"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
@@ -186,19 +188,19 @@ function Navigation() {
         <div className="md:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <a
-              href="#"
+              href="/"
               className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
             >
               SELLER LOGIN
             </a>
             <a
-              href="#"
+              href="/"
               className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
             >
               BUYER LOGIN
             </a>
             <a
-              href="#"
+              href="/"
               className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
             >
               SIGN UP
@@ -241,19 +243,19 @@ function Navigation() {
             </div>
             <div className="mt-3 space-y-1 px-2">
               <a
-                href="#"
+                href="/"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 Your Profile
               </a>
               <a
-                href="#"
+                href="/"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 Settings
               </a>
               <a
-                href="#"
+                href="/"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
               >
                 Sign out
@@ -263,7 +265,7 @@ function Navigation() {
         </div>
       )}
     </nav>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation
