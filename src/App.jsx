@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Main, Material, ProductsMain,ProductDetail } from './pages'
+import { Main, Material, ProductsMain,ProductDetail,ProductUpload,PointPage } from './pages'
 
 const ROUTER = createBrowserRouter([
   {
@@ -17,6 +17,14 @@ const ROUTER = createBrowserRouter([
   {
     path: '/product/detail',
     element: <ProductDetail />,
+  },
+  {
+    path: '/product/upload',
+    element: <ProductUpload />,
+  },
+  {
+    path: '/points',
+    element: <PointPage />,
   }
 ])
 
