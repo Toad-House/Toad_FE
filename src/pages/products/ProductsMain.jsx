@@ -25,12 +25,12 @@ const ProductsMain = () => {
 
   return (
     <div>
-      <div className="p-12 font-bold text-4xl">
+      <div className="p-12">
         <Navigation />
         <div className="flex relative">
           <TabBar def={'products'} />
           {mode ==='seller' && <div onClick={() => {navigate("/product/upload");}}
-          className="absolute right-5 top-5 bg-blue-500 rounded-md text-white text-base font-medium p-4 w-fit h-fit ">
+          className="absolute right-5 top-5 bg-gray-400 shadow-md rounded-md text-white text-base font-medium p-4 w-fit h-fit ">
             Add New Product
           </div>}
           

@@ -16,7 +16,7 @@ const ProductDetail = () => {
   
 
   return (
-    <div className="p-12 font-bold text-4xl">
+    <div className="p-12">
       <Navigation />
       <TabBar def={'products'}/>
       <button className="text-black font-normal text-base rounded-md mx-10" onClick={()=>{navigate(-1)}}>{"< BACK"}</button>
