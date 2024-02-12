@@ -1,6 +1,6 @@
 import Navigation from '../components/Navigation'
 import MaterialRequestModal from '../components/MaterialRequestModal'
-import TapBar from '../components/TapBar'
+import TabBar from '../components/TabBar'
 import SearchBar from "../components/SearchBar";
 
 const Main = () => {
@@ -8,7 +8,7 @@ const Main = () => {
     <>
       <div className="p-12">
         <Navigation />
-        <TapBar />
+        <TabBar />
         <SearchBar />
         <MaterialRequestModal></MaterialRequestModal>
         
