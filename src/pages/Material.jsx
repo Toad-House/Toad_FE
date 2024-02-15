@@ -1,5 +1,5 @@
 import  Navigation  from "../components/Navigation";
-import  TapBar from "../components/TapBar";
+import  TabBar from "../components/TabBar";
 import SearchBar from "../components/SearchBar";
 
 const Material = () => {
@@ -8,7 +8,7 @@ const Material = () => {
       
       <div className="p-12">
         <Navigation />
-        <TapBar def={'material'}/>
+        <TabBar def={'material'}/>
         <SearchBar currentPage={'material'}/>
       
       </div>
