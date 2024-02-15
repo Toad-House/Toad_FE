@@ -26,44 +26,44 @@ function Navigation() {
             </div>
           </div>
           <div className="hidden md:block">
-            <div className="ml-4 flex items-center md:ml-6">
+            <div className="flex items-center ml-4 md:ml-6">
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="flex items-baseline ml-10 space-x-4">
                   <a
                     href="/"
-                    className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
                   >
                     SELLER LOGIN
                   </a>
                   <a
                     href="/"
-                    className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
                   >
                     BUYER LOGIN
                   </a>
                   <a
                     href="/"
-                    className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
                   >
                     SIGN UP
                   </a>
                 </div>
               </div>
-              <div className="ml-4 flex items-center md:ml-6">
-                <span className="text-black-300 rounded-md px-3 py-2 text-sm font-medium">
+              <div className="flex items-center ml-4 md:ml-6">
+                <span className="px-3 py-2 text-sm font-medium rounded-md text-black-300">
                   Welcome, <span className="font-bold">junns</span>
                 </span>
-                <span className="text-green-300 rounded-md px-3 py-2 text-sm font-bold">
+                <span className="px-3 py-2 text-sm font-bold text-green-300 rounded-md">
                   400P
                 </span>
                 <button
                   type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">View notifications</span>
                   <svg
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
@@ -83,7 +83,7 @@ function Navigation() {
                 <div>
                   <button
                     type="button"
-                    className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     id="user-menu-button"
                     aria-expanded={isMenuVisible}
                     aria-haspopup="true"
@@ -92,7 +92,7 @@ function Navigation() {
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="h-8 w-8 rounded-full"
+                      className="w-8 h-8 rounded-full"
                       src={user}
                       alt="user"
                     />
@@ -100,7 +100,7 @@ function Navigation() {
                 </div>
                 {isMenuVisible && (
                   <div
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu-button"
@@ -139,10 +139,10 @@ function Navigation() {
               </div>
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="flex -mr-2 md:hidden">
             <button
               type="button"
-              className="relative inline-flex items-center justify-center rounded-md p-2"
+              className="relative inline-flex items-center justify-center p-2 rounded-md"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuVisible}
               id="mobile-menu-button"
@@ -152,7 +152,7 @@ function Navigation() {
               <span className="absolute -inset-0.5"></span>
               <span className="sr-only">Open main menu</span>
               <svg
-                className="block h-6 w-6"
+                className="block w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -166,7 +166,7 @@ function Navigation() {
                 />
               </svg>
               <svg
-                className="hidden h-6 w-6"
+                className="hidden w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -185,47 +185,47 @@ function Navigation() {
       </div>
       {isMobileMenuVisible && (
         <div className="md:hidden" id="mobile-menu">
-          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
               href="/"
-              className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
+              className="block px-3 py-2 text-sm font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
             >
               SELLER LOGIN
             </a>
             <a
               href="/"
-              className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
+              className="block px-3 py-2 text-sm font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
             >
               BUYER LOGIN
             </a>
             <a
               href="/"
-              className="text-black-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-sm font-medium"
+              className="block px-3 py-2 text-sm font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
             >
               SIGN UP
             </a>
           </div>
-          <div className="border-t border-gray-700 pb-3 pt-4">
+          <div className="pt-4 pb-3 border-t border-gray-700">
             <div className="flex items-center px-5">
               <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src={user} alt="user" />
+                <img className="w-10 h-10 rounded-full" src={user} alt="user" />
               </div>
               <div className="ml-3">
                 <div className="text-base font-medium leading-none text-black">
                   Welcome, <span className="font-bold">junns</span>
                 </div>
-                <div className="text-sm font-bold leading-none text-green-300 mt-1">
+                <div className="mt-1 text-sm font-bold leading-none text-green-300">
                   400P
                 </div>
               </div>
               <button
                 type="button"
-                className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="relative flex-shrink-0 p-1 ml-auto text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               >
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">View notifications</span>
                 <svg
-                  className="h-6 w-6"
+                  className="w-6 h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
@@ -240,22 +240,22 @@ function Navigation() {
                 </svg>
               </button>
             </div>
-            <div className="mt-3 space-y-1 px-2">
+            <div className="px-2 mt-3 space-y-1">
               <a
                 href="/"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white"
               >
                 Your Profile
               </a>
               <a
                 href="/"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white"
               >
                 Settings
               </a>
               <a
                 href="/"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:bg-gray-700 hover:text-white"
               >
                 Sign out
               </a>
