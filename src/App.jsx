@@ -1,5 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Main, Material, ProductsMain,ProductDetail } from './pages'
+import {
+  Main,
+  MaterialMain,
+  MaterialRequest,
+  ProductsMain,
+  ProductDetail,
+} from './pages'
 
 const ROUTER = createBrowserRouter([
   {
@@ -8,7 +14,11 @@ const ROUTER = createBrowserRouter([
   },
   {
     path: '/material',
-    element: <Material />,
+    element: <MaterialMain />,
+  },
+  {
+    path: '/material/request',
+    element: <MaterialRequest />,
   },
   {
     path: '/products',
@@ -17,7 +27,7 @@ const ROUTER = createBrowserRouter([
   {
     path: '/product/detail',
     element: <ProductDetail />,
-  }
+  },
 ])
 
 function App() {

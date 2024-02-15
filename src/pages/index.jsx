@@ -1,6 +1,7 @@
 import Main from './Main'
-import Material from './Material'
+import MaterialMain from './materials/MaterialMain'
 import ProductsMain from './products/ProductsMain'
-import ProductDetail from "./products/ProductDetail";
+import ProductDetail from './products/ProductDetail'
+import MaterialRequest from './materials/MaterialRequest'
 
-export { Main, Material, ProductsMain,ProductDetail }
+export { Main, MaterialMain, MaterialRequest, ProductsMain, ProductDetail }

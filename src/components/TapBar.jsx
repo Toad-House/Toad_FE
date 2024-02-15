@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const TapBar = ({ def }) => {
-  const [selectedTab, setSelectedTab] = useState(def);
+  const [selectedTab, setSelectedTab] = useState(def)
 
   const handleTabClick = (tab) => {
     if (selectedTab !== tab) {
-      setSelectedTab(tab);
+      setSelectedTab(tab)
     }
-  };
+  }
 
   return (
-    <div className="bg-white p-4">
-      <div className="flex flex-col-2">
+    <div className="p-4 bg-white">
+      <div className="flex flex-col-3">
         <TabButton
           tab="material"
           label="Material Sourcing"
@@ -25,16 +25,24 @@ const TapBar = ({ def }) => {
           selected={selectedTab === 'products'}
           onClick={handleTabClick}
         />
+        <div className="flex items-center justify-end w-full">
+          <Link
+            to="/material/request"
+            className="bg-[#FBFBFB] rounded-3xl drop-shadow-md font-extralight text-sm pl-6 pt-3 pr-6 pb-3 mb-2"
+          >
+            Write Material Request
+          </Link>
+        </div>
       </div>
-      <hr/>
+      <hr />
     </div>
-  );
-};
+  )
+}
 
 const TabButton = ({ tab, label, selected, onClick }) => {
   const tabStyle = selected
-    ? 'bg-gray-300 text-black px-4 py-2 rounded-tl-md rounded-tr-md'
-    : 'text-black px-4 py-2';
+    ? 'w-56 bg-gray-300 text-black px-4 py-2 rounded-tl-md rounded-tr-md text-center'
+    : 'w-56 text-black px-4 py-2 text-center'
 
   return (
     <Link
@@ -44,7 +52,7 @@ const TabButton = ({ tab, label, selected, onClick }) => {
     >
       {label}
     </Link>
-  );
-};
+  )
+}
 
-export default TapBar;
+export default TapBar

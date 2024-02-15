@@ -1,72 +1,83 @@
-const posts = [
+const products = [
   {
     id: 1,
-    title: 'waste leather',
+    name: 'Basic Tee',
     href: '#',
-    image:
-      'https://qi-o.qoo10cdn.com/goods_image_big/1/0/3/9/10695981039_l.jpg',
-    description: '소가죽입니다',
-    date: '2020-03-16',
-    category: { title: 'leather', href: '#' },
-    author: {
-      name: 'seokchan',
-      role: 'seller',
-      href: '#',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
+    imageSrc:
+      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 2,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc:
+      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 3,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc:
+      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 4,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc:
+      'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
   },
 ]
 
-function MaterialCard() {
+export default function MaterialCard() {
   return (
-    <div className="w-26 m-2 border-2 border-gray rounded-3xl">
-      {posts.map((post) => (
-        <div
-          key={post.id}
-          className="flex max-w-xl flex-col items-start justify-between"
-        >
-          <img src={post.image} className="rounded-3xl"></img>
-          <div className="group relative">
-            <a
-              href={post.category.href}
-              className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-            >
-              {post.category.title}
-            </a>
-            <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-              <a href={post.href}>
-                <span className="absolute inset-0" />
-                {post.title}
-              </a>
-            </h3>
-            <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-              {post.description}
-            </p>
-          </div>
-          <div className="relative mt-8 flex items-center gap-x-4">
-            <img
-              src={post.author.imageUrl}
-              alt=""
-              className="h-10 w-10 rounded-full bg-gray-50"
-            />
-            <div className="text-sm leading-6">
-              <p className="font-semibold text-gray-900">
-                <a href={post.author.href}>
-                  <span className="absolute inset-0" />
-                  {post.author.name}
-                </a>
-              </p>
-              <p className="text-gray-600">{post.author.role}</p>
+    <div className="max-w-2xl px-4 py-4 mx-auto sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
+      <div className="grid grid-cols-1 mt-6 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="relative border shadow-md rounded-2xl group"
+          >
+            <div className="w-full overflow-hidden bg-gray-200 rounded-t-2xl aspect-h-1 aspect-w-1 lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <img
+                src={product.imageSrc}
+                alt={product.imageAlt}
+                className="object-cover object-center w-full h-full border-b-2 lg:h-full lg:w-full"
+              />
             </div>
-            <div className="flex items-center gap-x-4 text-xs">
-              <time className="text-gray-500">{post.date}</time>
+            <div className="pb-3">
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex w-1/2 h-full">
+                  <h3 className="ml-4 text-base font-semibold text-gray-700">
+                    <a href={product.href}>
+                      <span aria-hidden="true" className="absolute inset-0" />
+                      {product.name}
+                    </a>
+                  </h3>
+                </div>
+                <div className="flex items-center justify-end w-1/2 h-full">
+                  <p className="text-xl font-bold text-[#5ED127] mr-2">
+                    {product.price}
+                  </p>
+                  <p className="mr-5 text-gray-900 text-[12px]">/ 1kg</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
-
-export default MaterialCard
