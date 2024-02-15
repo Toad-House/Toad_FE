@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const TapBar = ({ def }) => {
-  const [selectedTab, setSelectedTab] = useState(def)
+const TabBar = ({ def }) => {
+  const [selectedTab, setSelectedTab] = useState(def);
 
   const handleTabClick = (tab) => {
     if (selectedTab !== tab) {
@@ -11,8 +11,8 @@ const TapBar = ({ def }) => {
   }
 
   return (
-    <div className="p-4 bg-white">
-      <div className="flex flex-col-3">
+    <div className="bg-white p-4 mt-10 w-full">
+      <div className="flex flex-col-2">
         <TabButton
           tab="material"
           label="Material Sourcing"
@@ -55,4 +55,4 @@ const TabButton = ({ tab, label, selected, onClick }) => {
   )
 }
 
-export default TapBar
+export default TabBar;

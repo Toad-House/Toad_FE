@@ -5,6 +5,8 @@ import {
   MaterialRequest,
   ProductsMain,
   ProductDetail,
+  ProductUpload,
+  PointPage
 } from './pages'
 
 const ROUTER = createBrowserRouter([
@@ -28,6 +30,16 @@ const ROUTER = createBrowserRouter([
     path: '/product/detail',
     element: <ProductDetail />,
   },
+  {
+    path: '/product/upload',
+    element: <ProductUpload />,
+
+  },
+  {
+    path: '/points',
+    element: <PointPage />,
+
+  }
 ])
 
 function App() {

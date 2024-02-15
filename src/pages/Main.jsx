@@ -1,12 +1,17 @@
 import Navigation from '../components/Navigation'
-import TapBar from '../components/TapBar'
-import SearchBar from '../components/SearchBar'
-import MaterialCard from '../components/MaterialCard'
+import MaterialRequestModal from '../components/MaterialRequestModal'
+import TabBar from '../components/TabBar'
+import SearchBar from "../components/SearchBar";
+
 const Main = () => {
   return (
     <>
-      <div className="p-12 text-4xl font-bold">
+      <div className="p-12">
         <Navigation />
+        <TabBar />
+        <SearchBar />
+        <MaterialRequestModal></MaterialRequestModal>
+        
       </div>
     </>
   )

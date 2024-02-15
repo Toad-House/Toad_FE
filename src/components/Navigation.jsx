@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.png'
 import user from '../assets/user.png'
+import { useNavigate } from 'react-router-dom'
 
 function Navigation() {
   const [isMenuVisible, setMenuVisible] = useState(false)
@@ -13,14 +14,15 @@ function Navigation() {
   const toggleMoblieMenu = () => {
     setMobileMenuVisible(!isMobileMenuVisible)
   }
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white">
-      <div className="px-2 mx-4 max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="mx-4 px-2 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <img className="w-32 h-32" src={logo} alt="Toad House" />
+            <div className="flex-shrink-0" onClick={() =>{navigate("/");}}>
+              <img className="h-32 w-32" src={logo} alt="Toad House" />
             </div>
           </div>
           <div className="hidden md:block">
