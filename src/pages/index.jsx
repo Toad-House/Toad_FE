@@ -1,9 +1,9 @@
 import Main from './Main'
-import Material from './Material'
+import MaterialMain from './materials/MaterialMain'
 import ProductsMain from './products/ProductsMain'
+import MaterialRequest from './materials/MaterialRequest'
 import ProductDetail from "./products/ProductDetail";
 import ProductUpload from './products/ProductUpload';
-
 import PointPage from './point/PointPage';
 
-export { Main, Material, ProductsMain,ProductDetail,ProductUpload,PointPage }
+export { Main, MaterialMain, MaterialRequest, ProductsMain, ProductDetail,ProductUpload,PointPage  }
