@@ -11,30 +11,11 @@ const request = axios.create({
 
 export default request;
 
-export const postRidingRecordApi = async ({
-    ridingTime,
-    distance,
-    maxSpeed,
-    ridingDuration,
-    userList,
-  }: RidingRecordType) => {
-    try {
-      const response = await request.post(
-        "/riding_record/post",
-        JSON.stringify({
-          bicycleId: useMainBike.getState().main,
-          ridingTime: Number(ridingTime),
-          distance: distance,
-          avgSpeed: distance / (Number(ridingDuration) / (1000 * 60 * 60)),
-          maxSpeed: maxSpeed,
-          ridingDuration: Number(ridingDuration),
-          userList: userList,
-        })
-      );
-  
-      return response.data;
-    } catch (error) {
-      return handleApiError(error);
-    }
-  };
-  
+// export const GetBicycleListApi = async () => {
+//   try {
+//     const response = await request.get('/management_record/get_bicycle_list');
+//     return response.data;
+//   } catch (error) {
+//     return handleApiError(error);
+//   }
+// };
