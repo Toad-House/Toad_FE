@@ -2,8 +2,6 @@ import  Navigation from "../../components/Navigation";
 import  TabBar  from "../../components/TabBar";
 import SearchBar from "../../components/SearchBar";
 import ProductCard from "./ProductCard";
-import { useStore } from "../../store/useStore";
-import { useNavigate } from 'react-router-dom';
 
 
 const sampleProducts = [
@@ -19,9 +17,6 @@ const sampleProducts = [
 
 const ProductsMain = () => {
 
-  const mode = useStore((state) => state.mode);
-  const navigate = useNavigate();
-
 
   return (
     <div>
@@ -29,10 +24,7 @@ const ProductsMain = () => {
         <Navigation />
         <div className="flex relative">
           <TabBar def={'products'} />
-          {mode ==='seller' && <div onClick={() => {navigate("/product/upload");}}
-          className="absolute right-5 top-5 bg-gray-400 shadow-md rounded-md text-white text-base font-medium p-4 w-fit h-fit ">
-            Add New Product
-          </div>}
+
           
         </div>
         <SearchBar currentPage={'products'}/>
