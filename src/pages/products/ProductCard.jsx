@@ -1,4 +1,3 @@
-import productImage from '../../assets/image 14.svg';
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ title, company, image, price }) => {

@@ -21,6 +21,7 @@ const ProductUpload = () => {
       description,
       image,
     };
+    console.log(newProduct);
 
     setProductName('');
     setPrice('');

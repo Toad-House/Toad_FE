@@ -1,5 +1,4 @@
 import Navigation from '../components/Navigation'
-import MaterialRequestModal from '../components/MaterialRequestModal'
 import TabBar from '../components/TabBar'
 import SearchBar from "../components/SearchBar";
 
@@ -10,7 +9,6 @@ const Main = () => {
         <Navigation />
         <TabBar />
         <SearchBar />
-        <MaterialRequestModal></MaterialRequestModal>
         
       </div>
     </>
