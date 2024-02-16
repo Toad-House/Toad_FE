@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useStore } from "../store/useStore";
 
 const TabBar = ({ def }) => {
   const [selectedTab, setSelectedTab] = useState(def);
+  const { mode } = useStore();
 
   const handleTabClick = (tab) => {
     if (selectedTab !== tab) {
@@ -25,14 +27,14 @@ const TabBar = ({ def }) => {
           selected={selectedTab === 'products'}
           onClick={handleTabClick}
         />
-        <div className="flex items-center justify-end w-full">
+        {mode==='seller' && <div className="flex items-center justify-end w-full">
           <Link
             to="/material/request"
             className="bg-[#FBFBFB] rounded-3xl drop-shadow-md font-extralight text-sm pl-6 pt-3 pr-6 pb-3 mb-2"
           >
-            Write Material Request
+            {selectedTab ==='material'? 'Write Material Request' : 'Add New Products'}
           </Link>
-        </div>
+        </div>}
       </div>
       <hr />
     </div>
