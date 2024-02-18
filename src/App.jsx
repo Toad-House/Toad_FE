@@ -30,7 +30,7 @@ const ROUTER = createBrowserRouter([
     element: <MaterialRequest />,
   },
   {
-    path: '/material/detail',
+    path: '/material/detail/:id',
     element: <MaterialDetail />,
   },
   {
@@ -51,8 +51,8 @@ const ROUTER = createBrowserRouter([
   },
   {
     path: '/history/material',
-    element:<MaterialHistory />,
-  }
+    element: <MaterialHistory />,
+  },
 ])
 
 function App() {

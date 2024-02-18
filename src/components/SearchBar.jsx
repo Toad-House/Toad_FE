@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 
-const SearchBar = ({ currentPage, onSearch }) => {
+const SearchBar = ({ currentPage, setKeyword }) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch = () => {
-    // 여기서 currentPage에 따라 다른 검색 API를 사용할 수 있습니다.
     // 예시로 console.log를 사용했지만, 실제로는 검색 API 호출 등의 로직을 추가하면 됩니다.
     console.log(`Searching "${searchTerm}" on ${currentPage} page`)
 
-    // 검색 후 부모 컴포넌트에 검색어 전달
-    onSearch(searchTerm)
+    // 검색어 부모 컴포넌트에 검색어 전달
+    setKeyword(searchTerm)
   }
 
   return (

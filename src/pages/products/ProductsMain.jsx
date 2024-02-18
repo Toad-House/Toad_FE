@@ -5,28 +5,28 @@ import ProductCard from './ProductCard'
 import { GetAllProductsApi } from '../../apis/products'
 import { useEffect, useState } from 'react'
 
-const ProductsMain =  () => {
-  const [products, setProducts] = useState([]);
+const ProductsMain = () => {
+  const [products, setProducts] = useState([])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await GetAllProductsApi();
-            setProducts(response);
-            console.log(response)
-          } catch (error) {
-            console.error('Error fetching products:', error);
-          }
-        };
-    
-        fetchData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await GetAllProductsApi()
+        setProducts(response)
+        console.log(response)
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <div>
       <div className="p-12">
         <Navigation />
-        <div className="flex relative">
+        <div className="relative flex">
           <TabBar def={'products'} />
         </div>
         <SearchBar currentPage={'products'} />
@@ -35,9 +35,9 @@ const ProductsMain =  () => {
           {products.map((product) => (
             <ProductCard
               key={product.productId}
-              id = {product.productId}
+              id={product.productId}
               title={product.productName}
-              company={"ToadHouse"}
+              company={'ToadHouse'}
               image={product.imageUrl}
               price={product.productPrice}
             />

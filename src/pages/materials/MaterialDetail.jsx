@@ -1,8 +1,9 @@
 import Navigation from '../../components/Navigation'
 import { useStore } from '../../store/useStore'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import fileImg from '../../assets/Vector.png'
-import { SourcingRequestApi } from '../../apis/materials'
+import { SourcingRequestApi, MaterialDetailApi } from '../../apis/materials'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function MaterialDetail() {
   const { mode, userData } = useStore()
@@ -10,6 +11,9 @@ export default function MaterialDetail() {
   const [imageFile, setImageFile] = useState(null)
   const [quantityOfMaterial, setQuantityOfMaterial] = useState('')
   const [collectionArea, setCollectionArea] = useState('')
+  const [materialData, setMaterialData] = useState({})
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   const handleFileChange = (event) => {
     const file = event.target.files[0]
@@ -47,14 +51,39 @@ export default function MaterialDetail() {
     }
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await MaterialDetailApi(id)
+        console.log(response)
+        setMaterialData(response)
+      } catch (error) {
+        console.error('Error fetching material details:', error)
+      }
+    }
+
+    fetchData()
+  }, [id])
+
   return (
     <div>
       <div className="p-12 text-4xl font-bold">
         <Navigation></Navigation>
-        <div className="w-56 px-4 py-2 text-base font-light text-center text-black border-2 rounded-tl-md rounded-tr-md">
-          Material Sourcing
+        <button
+          className="mb-6 text-base font-normal text-black rounded-md ml-14"
+          onClick={() => {
+            navigate('/material')
+          }}
+        >
+          {'< MENU'}
+        </button>
+        <div className="flex flex-col items-center justify-center">
+          <div className="w-11/12 px-4 py-2 text-base font-light text-center text-black border-2 rounded-tl-md rounded-tr-md">
+            Material Sourcing
+          </div>
+          <hr></hr>
         </div>
-        <hr></hr>
+
         <form
           className="flex flex-col items-center justify-center "
           onSubmit={handleSubmit}
@@ -62,16 +91,19 @@ export default function MaterialDetail() {
           <div className="w-11/12 p-16 m-10 border-2 border-gray rounded-3xl">
             <div className="flex w-full h-[250px]">
               <img
-                src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+                src={materialData.imageUrl}
+                alt={materialData.materialName}
                 className="w-1/4 rounded-3xl"
               ></img>
               <div className="flex flex-col justify-center w-3/4 ml-4">
                 <div className="flex mb-4">
                   <div className="w-1/2">
-                    <h1>waste leather</h1>
+                    <h1>{materialData.materialName}</h1>
                   </div>
                   <div className="flex justify-end w-1/2 text-center align-middle">
-                    <p className="text-[#5ED127]">600p</p>
+                    <p className="text-[#5ED127]">
+                      {materialData.pointsPerWeight}
+                    </p>
                     <p className="mt-3 ml-2 text-sm">/1kg</p>
                   </div>
                 </div>
@@ -83,9 +115,9 @@ export default function MaterialDetail() {
                     <h2>Minimum Quantity</h2>
                   </div>
                   <div className="flex flex-col w-1/2 gap-4 text-sm font-light text-center text-gray-300 h-1/2">
-                    <p>Good, Intact, Slightly Damaged</p>
-                    <p>Wallet</p>
-                    <p>2kg</p>
+                    <p>{materialData.expectedCondition}</p>
+                    <p>{materialData.materialName}</p>
+                    <p>{materialData.minimumQuantity}</p>
                   </div>
                 </div>
               </div>
@@ -100,13 +132,13 @@ export default function MaterialDetail() {
                 <div className="flex mt-4">
                   <h2 className="w-1/2 text-sm">Collection Available Area</h2>
                   <p className="w-1/2 text-sm font-light text-gray-300">
-                    Seoul and Metropolitan Area, South Korea
+                    {materialData.availableArea}
                   </p>
                 </div>
                 <div className="flex">
                   <h2 className="w-1/2 text-sm">Collection Restricted Area</h2>
                   <p className="w-1/2 text-sm font-light text-gray-300">
-                    Other Regions in South Korea
+                    {materialData.restrictedArea}
                   </p>
                 </div>
               </div>
