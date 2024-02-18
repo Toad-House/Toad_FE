@@ -1,9 +1,16 @@
 import request from './request'
 
 /// 새 상품 등록
-export const ProductRegistrationApi = async ({ params }) => {
+export const ProductRegistrationApi = async (newProduct) => {
   try {
-    const res = await request.post('/product/new', JSON.stringify(params))
+    const formData = new FormData();
+    formData.append('productName', newProduct.productName);
+    formData.append('productPrice', newProduct.productPrice);
+    formData.append('productDesc', newProduct.productDesc);
+    formData.append('imageUrls', newProduct.imageUrls);
+    formData.append('companyId', newProduct.companyId);
+    const res = await request.post('/product/new', formData)
+    console.log(res.status);
     return res.data
   } catch (error) {
     console.log(error)
