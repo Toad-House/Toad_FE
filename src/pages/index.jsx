@@ -7,6 +7,7 @@ import ProductUpload from './products/ProductUpload'
 import PointPage from './point/PointPage'
 import MaterialDetail from './materials/MaterialDetail'
 import ProductBuy from './products/ProductBuy'
+import MaterialHistory from './history/MaterialHistory'
 export {
   ProductBuy,
   Main,
@@ -17,4 +18,5 @@ export {
   ProductDetail,
   ProductUpload,
   PointPage,
+  MaterialHistory,
 }

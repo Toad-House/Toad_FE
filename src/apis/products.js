@@ -1,4 +1,4 @@
-import request from './request'
+import {request, form_request} from './request'
 
 /// 새 상품 등록
 export const ProductRegistrationApi = async (newProduct) => {
@@ -7,11 +7,10 @@ export const ProductRegistrationApi = async (newProduct) => {
     formData.append('productName', newProduct.productName);
     formData.append('productPrice', newProduct.productPrice);
     formData.append('productDesc', newProduct.productDesc);
-    formData.append('imageUrls', newProduct.imageUrls);
+    formData.append('image', newProduct.image);
     formData.append('companyId', newProduct.companyId);
-    const res = await request.post('/product/new', formData)
-    console.log(res.status);
-    return res.data
+    const res = await form_request.post('/product/new', formData)
+    return res.status
   } catch (error) {
     console.log(error)
   }
@@ -41,7 +40,7 @@ export const ProductSearchApi = async (keyword) => {
 export const ProductDetailApi = async (id) => {
   try {
     const res = await request.get(`/product/detail/${id}`)
-    return res.data
+    return res
   } catch (error) {
     console.log(error)
   }

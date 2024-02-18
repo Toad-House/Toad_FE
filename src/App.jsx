@@ -8,6 +8,7 @@ import {
   ProductDetail,
   ProductUpload,
   PointPage,
+  MaterialHistory,
   ProductBuy,
 } from './pages'
 
@@ -48,6 +49,10 @@ const ROUTER = createBrowserRouter([
     path: '/points',
     element: <PointPage />,
   },
+  {
+    path: '/history/material',
+    element:<MaterialHistory />,
+  }
 ])
 
 function App() {
