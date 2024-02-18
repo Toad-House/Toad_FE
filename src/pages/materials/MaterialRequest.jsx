@@ -1,82 +1,142 @@
-import InputBox from '../../components/InputBox'
-import Navigation from '../../components/Navigation'
-import { Link } from 'react-router-dom'
+
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import {MaterialRegistrationApi} from "../../apis/materials";
 
 export default function MaterialRequest() {
-  return (
-    <div className="p-12 text-4xl font-bold">
-      <Navigation></Navigation>
-      <div className="w-56 px-4 py-2 text-base font-light text-center text-black border-2 rounded-tl-md rounded-tr-md">
-        Material Sourcing
-      </div>
-      <hr></hr>
-      <div className="w-11/12 p-16 m-10 border-2 border-gray rounded-3xl">
-        <form className="w-full">
-          <div className="w-full">
-            <div className="w-full pb-12 border-b border-gray-900/10">
-              <div className="w-full">
-                <h2 className="mb-4 text-base leading-7 text-gray-300">
-                  Material Information
-                </h2>
-                <div className="flex flex-col w-full">
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Material Type"
-                  ></InputBox>
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Minimum Quantitiy"
-                  ></InputBox>
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Expected Condition"
-                  ></InputBox>
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Produced Item"
-                  ></InputBox>
-                  <div className="flex items-center">
-                    <InputBox
-                      inputWrapperSize="w-[10rem]"
-                      label="Points per Weight"
-                    ></InputBox>
-                    <p className="mt-6 ml-4 text-sm font-light">Points / g</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8">
-                <h2 className="text-base leading-7 text-gray-300">
-                  Collection Area
-                </h2>
-                <div className="flex flex-col">
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Restricted Area"
-                  ></InputBox>
-                  <InputBox
-                    inputWrapperSize="w-auto grow"
-                    label="Available Area"
-                  ></InputBox>
-                </div>
-              </div>
-            </div>
-          </div>
+  const navigate = useNavigate();
 
-          <div className="flex items-center justify-end mt-6 gap-x-6">
-            <Link
-              to="/material"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Cancel
-            </Link>
+  const [name, setName] = useState();
+  const [quantity, setQuantity] = useState();
+  const [condition, setCondition] = useState();
+  const [pointsPerWeight,setPointsPerWeight] = useState();
+  const [restrictedArea, setRestrictedArea] = useState();
+  const [availableArea, setAvailableArea] = useState();
+  const [image, setImage] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const newProduct = {
+      companyId: 1,
+      materialName: name,
+      minimumQuantity: parseInt(quantity),
+      expectedCondition: condition,
+      productId: 1,
+      pointsPerWeight: parseInt(pointsPerWeight),
+      restrictedArea,
+      availableArea,
+      multipartFile: image,
+    }
+
+    const res = await MaterialRegistrationApi(newProduct);
+    console.log("request\n", newProduct)
+    
+    console.log(res)
+
+    
+  }
+
+  return (
+    <div>
+      <div className="max-w-screen p-6 mt-5 mx-[20%]  bg-white rounded-md">
+      <div>
+          <button
+            onClick={() => navigate(-1)}
+            className=" text-gray-800 my-3 text-md font-semibold p-2 rounded-md mr-4"
+          >
+            {'< BACK'}
+          </button>
+          <h1 className="text-3xl font-semibold mb-6 ">Write Material Request</h1>
+        </div>
+        <div className="border-gray-100 border shadow-md p-10 rounded-lg">
+          <div className="mb-4 flex">
+              <label className="block text-gray-700 mb-2 w-52">
+                Material Name
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <label className="block text-gray-700 mb-2 w-52">
+                Minimum Quantity(g)
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+              
+            </div>
+            <div className="mb-4 flex">
+              <label className="block text-gray-700 mb-2 w-52">
+                Expected Condition
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="text"
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <label className="block text-gray-700 mb-2 w-52">
+                Points Per 100g
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="number"
+                value={pointsPerWeight}
+                onChange={(e) => setPointsPerWeight(e.target.value)}
+              />
+            </div>
+            <div className="mb-10 flex">
+              <label className="block text-gray-700 mb-2 w-52">Image</label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="file"
+                accept="image/*"
+                onChange={e => setImage(e.target.files[0])}
+              />
+            </div>
+            <hr />
+
+
+            <div className="mb-4 flex mt-10">
+              <label className="block text-gray-700 mb-2 w-52">
+                Restricted Area
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="text"
+                value={restrictedArea}
+                onChange={(e) => setRestrictedArea(e.target.value)}
+              />
+            </div>
+            <div className="mb-4 flex">
+              <label className="block text-gray-700 mb-2 w-52">
+                Available Area
+              </label>
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200"
+                type="text"
+                value={availableArea}
+                onChange={(e) => setAvailableArea(e.target.value)}
+              />
+            </div>
             <button
+              className="w-full bg-blue-500 text-white p-3 rounded-md mt-5"
               type="submit"
-              className="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={handleSubmit}
             >
-              Save
+              Write Request
             </button>
-          </div>
-        </form>
+
+        </div>
       </div>
     </div>
   )
