@@ -11,7 +11,7 @@ const ProductCard = ({ id, title, company, image, price }) => {
       onClick={handleCardClick}
     >
       <img
-        src="https://nukak.kr/web/product/big/202312/75f08c112e031c2d5f199359a94065f9.png"
+        src={image}
         alt={title}
         className="w-full h-48 object-contain"
       />

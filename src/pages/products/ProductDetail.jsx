@@ -19,9 +19,11 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Assuming getProductById is an async function that fetches product details by id
         const response = await ProductDetailApi(id);
-        setProductData(response);
+        console.log(response);
+        setProductData(response.data);
+        console.log(productData)
+        
       } catch (error) {
         console.error('Error fetching product details:', error);
       }
@@ -44,29 +46,29 @@ const ProductDetail = () => {
       </button>
       <div className="flex mt-8 p-6">
         <img
-          src="https://nukak.kr/web/product/big/202312/75f08c112e031c2d5f199359a94065f9.png"
-          alt={productData.title}
+          src={productData.imageUrl}
+          alt={productData.productName}
           className=" object-contain w-2/5 h-72 mr-8 rounded-xl"
         />
         <div className="flex flex-col">
           <div className="text-gray-500 text-sm font-light mb-2">
-            {productData.company}
+            {productData.companyName}
           </div>
-          <div className="font-bold text-3xl mb-4">{productData.title}</div>
-          <div className="text-red-500 font-semibold text-xl mb-4">{`$${productData.price}`}</div>
+          <div className="font-bold text-3xl mb-4">{productData.productName}</div>
+          <div className="text-red-500 font-semibold text-xl mb-4">{`$${productData.productPrice}`}</div>
           <button className="bg-blue-500 text-white p-4 px-7 font-semibold text-base rounded-md my-4">
             BUY
           </button>
           <div className="flex flex-row mt-10">
-            <div className="text-base pr-2">Materials Used for Upcycling:</div>
+            {/* <div className="text-base pr-2">Materials Used for Upcycling:</div>
             <div className="text-base font-light mb-4">
-              {productData.materials}
-            </div>
+              {productData.productDesc}
+            </div> */}
           </div>
         </div>
       </div>
       <div
-        dangerouslySetInnerHTML={{ __html: productData.description }}
+        dangerouslySetInnerHTML={{ __html: productData.productDesc }}
         className="text-gray-700 font-light text-sm px-6 m-8 mt-12"
       ></div>
     </div>

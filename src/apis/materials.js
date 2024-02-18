@@ -1,4 +1,4 @@
-import request from './request'
+import {request, form_request} from './request'
 
 // Material sourcing 등록
 export const MaterialRegistrationApi = async (newProduct) => {
@@ -13,7 +13,7 @@ export const MaterialRegistrationApi = async (newProduct) => {
     formData.append('restrictedArea', newProduct.restrictedArea);
     formData.append('availableArea', newProduct.availableArea);
     formData.append('multipartFile', newProduct.multipartFile);
-    const res = await request.post('/material', formData)
+    const res = await form_request.post('/material', formData)
     console.log(res)
     return res.data
   } catch (error) {
