@@ -13,7 +13,7 @@ const ProductCard = ({ id, title, company, image, price }) => {
       <img
         src={image}
         alt={title}
-        className="w-full h-48 object-contain"
+        className="w-full h-44 object-contain"
       />
       <div className="px-8 py-5">
         <div className="text-gray-500 text-sm font-light">{company}</div>

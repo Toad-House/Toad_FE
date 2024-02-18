@@ -10,8 +10,7 @@ export const ProductRegistrationApi = async (newProduct) => {
     formData.append('image', newProduct.image);
     formData.append('companyId', newProduct.companyId);
     const res = await form_request.post('/product/new', formData)
-    
-    return res.data
+    return res.status
   } catch (error) {
     console.log(error)
   }

@@ -26,12 +26,16 @@ const ProductUpload = () => {
     if(image){
         console.log(newProduct)
         const res = await ProductRegistrationApi(newProduct)
-        console.log(res)
+        
+        if(res === 200){
+          alert("Product registration has been completed");
+          setProductName('')
+          setPrice('')
+          setDescription('')
+          setImage(null)
+          navigate(-1);
+        }
 
-        setProductName('')
-        setPrice('')
-        setDescription('')
-        setImage(null)
     }
     
   }
