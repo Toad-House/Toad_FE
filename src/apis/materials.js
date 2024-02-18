@@ -55,6 +55,7 @@ export const MaterialDetailApi = async (id) => {
 export const GetAllMaterialsApi = async () => {
   try {
     const res = await request.get('/material/all')
+    console.log("res: ", res)
     return res.data
   } catch (error) {
     console.log(error)
