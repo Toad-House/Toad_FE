@@ -41,9 +41,7 @@ const ProductUpload = () => {
     }
 
     const res = await ProductRegistrationApi(newProduct)
-    const getall = await GetAllProductsApi()
     console.log(res)
-    console.log('getall', getall)
 
     setProductName('')
     setPrice('')

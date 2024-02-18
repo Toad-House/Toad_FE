@@ -1,9 +1,19 @@
 import request from './request'
 
 // Material sourcing 등록
-export const MaterialRegistrationApi = async ({ params }) => {
+export const MaterialRegistrationApi = async (newProduct) => {
   try {
-    const res = await request.post('/material', JSON.stringify(params))
+    const formData = new FormData();
+    formData.append('companyId', 1);
+    formData.append('materialName', newProduct.materialName);
+    formData.append('minimumQuantity', newProduct.minimumQuantity);
+    formData.append('expectedCondition', newProduct.expectedCondition);
+    formData.append('productId', 1);
+    formData.append('pointsPerWeight', newProduct.pointsPerWeight);
+    formData.append('restrictedArea', newProduct.restrictedArea);
+    formData.append('availableArea', newProduct.availableArea);
+    formData.append('multipartFile', newProduct.multipartFile);
+    const res = await request.post('/material', formData)
     console.log(res)
     return res.data
   } catch (error) {
