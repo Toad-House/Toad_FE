@@ -1,6 +1,6 @@
 import Navigation from '../components/Navigation'
 import TabBar from '../components/TabBar'
-import SearchBar from "../components/SearchBar";
+import SearchBar from '../components/SearchBar'
 
 const Main = () => {
   return (
@@ -9,7 +9,6 @@ const Main = () => {
         <Navigation />
         <TabBar />
         <SearchBar />
-        
       </div>
     </>
   )
