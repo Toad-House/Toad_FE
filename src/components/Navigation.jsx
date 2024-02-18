@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import logo from '../assets/logo.png'
 import user from '../assets/user.png'
 import { useNavigate } from 'react-router-dom'
+import { useStore } from '../store/useStore'
+import { Link } from 'react-router-dom'
 
 function Navigation() {
   const [isMenuVisible, setMenuVisible] = useState(false)
   const [isMobileMenuVisible, setMobileMenuVisible] = useState(false)
+  const { mode, points, setMode, userData } = useStore()
 
   const toggleMenu = () => {
     setMenuVisible(!isMenuVisible)
@@ -14,129 +17,142 @@ function Navigation() {
   const toggleMoblieMenu = () => {
     setMobileMenuVisible(!isMobileMenuVisible)
   }
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <nav className="bg-white">
       <div className="mx-4 px-2 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <div className="flex-shrink-0" onClick={() =>{navigate("/");}}>
+            <div
+              className="flex-shrink-0"
+              onClick={() => {
+                navigate('/')
+              }}
+            >
               <img className="h-32 w-32" src={logo} alt="Toad House" />
             </div>
           </div>
           <div className="hidden md:block">
             <div className="flex items-center ml-4 md:ml-6">
-              <div className="hidden md:block">
-                <div className="flex items-baseline ml-10 space-x-4">
-                  <a
-                    href="/"
-                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    SELLER LOGIN
-                  </a>
-                  <a
-                    href="/"
-                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    BUYER LOGIN
-                  </a>
-                  <a
-                    href="/"
-                    className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
-                  >
-                    SIGN UP
-                  </a>
+              {mode === 'guest' && (
+                <div className="hidden md:block">
+                  <div className="flex items-baseline ml-10 space-x-4">
+                    <Link
+                      to="/"
+                      className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      SELLER LOGIN
+                    </Link>
+                    <Link
+                      to="/"
+                      className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      BUYER LOGIN
+                    </Link>
+                    <Link
+                      to="/"
+                      className="block px-3 py-2 text-base font-medium rounded-md text-black-300 hover:bg-gray-700 hover:text-white"
+                    >
+                      SIGN UP
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center ml-4 md:ml-6">
-                <span className="px-3 py-2 text-sm font-medium rounded-md text-black-300">
-                  Welcome, <span className="font-bold">junns</span>
-                </span>
-                <span className="px-3 py-2 text-sm font-bold text-green-300 rounded-md">
-                  400P
-                </span>
-                <button
-                  type="button"
-                  className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="absolute -inset-1.5"></span>
-                  <span className="sr-only">View notifications</span>
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              <div className="relative ml-3">
-                <div>
+              )}
+              {mode !== 'guest' && (
+                <div className="flex items-center ml-4 md:ml-6">
+                  <span className="px-3 py-2 text-sm font-medium rounded-md text-black-300">
+                    Welcome,{' '}
+                    <span className="font-bold">{userData.nickname}</span>
+                  </span>
+                  <span className="px-3 py-2 text-sm font-bold text-green-300 rounded-md">
+                    {`${points}P`}
+                  </span>
                   <button
                     type="button"
-                    className="relative flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded={isMenuVisible}
-                    aria-haspopup="true"
-                    onClick={toggleMenu}
+                    className="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span className="absolute -inset-1.5"></span>
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="w-8 h-8 rounded-full"
-                      src={user}
-                      alt="user"
-                    />
+                    <span className="sr-only">View notifications</span>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                      />
+                    </svg>
                   </button>
                 </div>
-                {isMenuVisible && (
-                  <div
-                    className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="user-menu-button"
-                    tabIndex="-1"
-                    id="navbar-menu-box"
-                  >
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-0"
+              )}
+
+              {mode !== 'guest' && (
+                <div className="relative ml-3">
+                  <div>
+                    <button
+                      type="button"
+                      className="relative flex items-center max-w-xs text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button"
+                      aria-expanded={isMenuVisible}
+                      aria-haspopup="true"
+                      onClick={toggleMenu}
                     >
-                      Your Profile
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-1"
-                    >
-                      Settings
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-2"
-                    >
-                      Sign out
-                    </a>
+                      <span className="absolute -inset-1.5"></span>
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="w-8 h-8 rounded-full"
+                        src={user}
+                        alt="user"
+                      />
+                    </button>
                   </div>
-                )}
-              </div>
+                  {isMenuVisible && (
+                    <div
+                      className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="user-menu-button"
+                      tabIndex="-1"
+                      id="navbar-menu-box"
+                    >
+                      <Link
+                        to="/points"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-0"
+                      >
+                        Points
+                      </Link>
+                      <Link
+                        to="/history"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-1"
+                      >
+                        History
+                      </Link>
+                      <Link
+                        to="/"
+                        className="block px-4 py-2 text-sm text-gray-700"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-2"
+                        onClick={() => setMode('guest')}
+                      >
+                        Sign out
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
           <div className="flex -mr-2 md:hidden">

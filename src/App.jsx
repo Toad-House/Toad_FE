@@ -2,11 +2,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import {
   Main,
   MaterialMain,
+  MaterialDetail,
   MaterialRequest,
   ProductsMain,
   ProductDetail,
   ProductUpload,
-  PointPage
+  PointPage,
+  ProductBuy,
 } from './pages'
 
 const ROUTER = createBrowserRouter([
@@ -15,12 +17,20 @@ const ROUTER = createBrowserRouter([
     element: <Main />,
   },
   {
+    path: '/product/buy',
+    element: <ProductBuy />,
+  },
+  {
     path: '/material',
     element: <MaterialMain />,
   },
   {
     path: '/material/request',
     element: <MaterialRequest />,
+  },
+  {
+    path: '/material/detail',
+    element: <MaterialDetail />,
   },
   {
     path: '/products',
@@ -33,13 +43,11 @@ const ROUTER = createBrowserRouter([
   {
     path: '/product/upload',
     element: <ProductUpload />,
-
   },
   {
     path: '/points',
     element: <PointPage />,
-
-  }
+  },
 ])
 
 function App() {

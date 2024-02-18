@@ -1,17 +1,18 @@
 ## 실행
-```$ yarn install``` <-- yarn 설치 후 yarn install로 dependencies 다운로드<br/> 
-```$ yarn start``` <-- 빌드 명령어
+
+`$ yarn install` <-- yarn 설치 후 yarn install로 dependencies 다운로드<br/>
+`$ yarn start` <-- 빌드 명령어
 
 ## 폴더 구조
 
 > /src
->   - /assets
->  - /components
->   - /context
->   - /hooks
->   - /pages
->   - /utils
-> 
+>
+> - /assets
+> - /components
+> - /context
+> - /hooks
+> - /pages
+> - /utils
 
 ### assets
 
@@ -19,7 +20,7 @@
 
 ### components
 
-재사용가능한 컴포넌트들을 저장. 
+재사용가능한 컴포넌트들을 저장.
 
 ### context
 
@@ -27,7 +28,7 @@
 
 ### hooks
 
-공통으로 사용하는 훅들. 재사용 가능한 커스텀 훅들을 저장하는 공간. 
+공통으로 사용하는 훅들. 재사용 가능한 커스텀 훅들을 저장하는 공간.
 
 ### pages
 
@@ -35,6 +36,6 @@
 
 ### utils
 
-유틸 함수들. 각 유틸함수는 순수 함수로 구성한다. 
+유틸 함수들. 각 유틸함수는 순수 함수로 구성한다.
 
 (파일 하나당 유틸 함수 하나만 export 하고 디렉토리 내부에 index.js를 둬서 재 export하게 해서 사용)
