@@ -1,4 +1,5 @@
 import request from './request'
+import formRequest from './formRequest'
 
 // Material sourcing 등록
 export const MaterialRegistrationApi = async ({ params }) => {
@@ -13,8 +14,12 @@ export const MaterialRegistrationApi = async ({ params }) => {
 
 // Buyer -> Seller 재료 제공 요청
 export const SourcingRequestApi = async ({ params }) => {
+  console.log(params)
+  for (let key of params.keys()) {
+    console.log(key, ':', params.get(key))
+  }
   try {
-    const res = await request.post('/material/request', JSON.stringify(params))
+    const res = await formRequest.post('/material/request', params)
     return res.data
   } catch (error) {
     console.log(error)

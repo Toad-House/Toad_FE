@@ -1,7 +1,7 @@
 import Navigation from '../../components/Navigation'
 import TabBar from '../../components/TabBar'
 import SearchBar from '../../components/SearchBar'
-import MaterialCard from '../../components/MaterialCard'
+import MaterialCard from './MaterialCard'
 
 export default function MaterialMain() {
   return (
