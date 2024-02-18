@@ -39,7 +39,8 @@ export const SourcingRequestApi = async ({ params }) => {
 // Material Sourcing 검색 api
 export const MaterialSearchApi = async (keyword) => {
   try {
-    const res = request.get(`/material/search?keyword=${keyword}`)
+    console.log("keyword", keyword)
+    const res = await request.get(`/material/search?keyword=${keyword}`)
     return res.data
   } catch (error) {
     console.log(error)

@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const HistoryModal = ({ isOpen, closeModal, onSave, modalType }) => {
-  const [modalContent, setModalContent] = useState('')
+const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
+  const [modalContent, setModalContent] = useState({
+    expectedDate: "",
+    expectedTime: "",
+    cancelReason: "",
+    points: 0
+  })
+
 
   const handleSave = () => {
     onSave(modalContent)
@@ -10,7 +16,7 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType }) => {
 
   const renderModalContent = () => {
     switch (modalType) {
-      case 'approve':
+      case 'approved':
         return (
           <>
             <h2 className="mb-4 text-2xl font-semibold">
@@ -19,20 +25,20 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType }) => {
             <label className="block mb-2">Select Date:</label>
             <input
               type="date"
-              value={modalContent}
-              onChange={(e) => setModalContent(e.target.value)}
+              value={modalContent.expectedDate}
+              onChange={(e) => setModalContent(prevState => ({...prevState, expectedDate: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
             <label className="block mb-2">Select Time:</label>
             <input
               type="time"
-              value={modalContent}
-              onChange={(e) => setModalContent(e.target.value)}
+              value={modalContent.expectedTime}
+              onChange={(e) => setModalContent(prevState => ({...prevState, expectedTime: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
           </>
         )
-      case 'cancel':
+      case 'canceled':
         return (
           <>
             <h2 className="mb-4 text-2xl font-semibold">
@@ -40,23 +46,23 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType }) => {
             </h2>
             <label className="block mb-2">Reason:</label>
             <textarea
-              value={modalContent}
-              onChange={(e) => setModalContent(e.target.value)}
+              value={modalContent.cancelReason}
+              onChange={(e) => setModalContent(prevState => ({...prevState, cancelReason: e.target.value}))}
               maxLength={100}
               placeholder="Enter your reason here"
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
           </>
         )
-      case 'complete':
+      case 'completed':
         return (
           <>
             <h2 className="mb-4 text-2xl font-semibold">Please fill points</h2>
             <label className="block mb-2">Points:</label>
             <input
               type="number"
-              value={modalContent}
-              onChange={(e) => setModalContent(e.target.value)}
+              value={modalContent.points}
+              onChange={(e) => setModalContent(prevState => ({...prevState, points: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
           </>

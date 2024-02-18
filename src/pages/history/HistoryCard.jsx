@@ -1,10 +1,9 @@
 import React from 'react'
 
 const HistoryCard = ({ historyItem, openModal }) => {
-  console.log(historyItem)
   const badgeColor = (state) => {
     switch (state) {
-      case 'applicated':
+      case 'applied':
         return 'bg-yellow-500 text-white'
       case 'approved':
         return 'bg-green-500 text-white'
@@ -19,17 +18,17 @@ const HistoryCard = ({ historyItem, openModal }) => {
 
   const renderButtons = (state) => {
     switch (state) {
-      case 'applicated':
+      case 'applied':
         return (
           <>
             <button
-              onClick={() => openModal('approve')}
+              onClick={() => openModal('approved', historyItem.requestId)}
               className="w-full px-4 py-2 my-2 mb-2 text-white bg-green-500 rounded-md"
             >
               Approve
             </button>
             <button
-              onClick={() => openModal('cancel')}
+              onClick={() => openModal('canceled', historyItem.requestId)}
               className="w-full px-4 py-2 my-2 text-white bg-red-500 rounded-md"
             >
               Cancel
@@ -39,7 +38,7 @@ const HistoryCard = ({ historyItem, openModal }) => {
       case 'approved':
         return (
           <button
-            onClick={() => openModal('complete')}
+            onClick={() => openModal('completed', historyItem.requestId)}
             className="px-4 py-2 my-2 text-white bg-blue-500 rounded-md"
           >
             Complete

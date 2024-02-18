@@ -18,6 +18,7 @@ export default function MaterialMain() {
         if (keyword === '') {
           response = await GetAllMaterialsApi()
         } else {
+          console.log("key", keyword)
           response = await MaterialSearchApi(keyword)
         }
 
