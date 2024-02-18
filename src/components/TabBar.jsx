@@ -27,7 +27,7 @@ const TabBar = ({ def }) => {
           selected={selectedTab === 'products'}
           onClick={handleTabClick}
         />
-        {mode === 'seller' && (
+        {mode === 'seller' && selectedTab && (
           <div className="flex items-center justify-end w-full">
             <Link
               to={selectedTab === 'material' ? "/material/request" : "/product/upload"}

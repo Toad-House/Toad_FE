@@ -1,7 +1,29 @@
 import { useNavigate } from "react-router-dom";
+import {ProductRegistrationApi} from "../../apis/products";
 import React from "react";
 
+
+const encodeFileToBase64 = (image) => {
+  return new Promise(async (resolve, reject) => {
+    const reader = new FileReader();
+    if (image) {
+      reader.readAsDataURL(image);
+      reader.onload = (event) => resolve(event.target.result);
+      reader.onerror = (error) => reject(error);
+    }
+  });
+};
+
 const ProductUpload = () => {
+
+
+  const onImageChange = async (e) => {
+    const selectedImage = e.target.files && e.target.files[0];
+    if(selectedImage){
+      const base64image = (await encodeFileToBase64(selectedImage));
+      setImage(base64image);
+    }
+  }
   const navigate = useNavigate();
 
   // 입력 값 상태 관리
@@ -11,17 +33,18 @@ const ProductUpload = () => {
   const [image, setImage] = React.useState(null);
 
   // 폼 제출 핸들러
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // 폼 데이터를 새로운 상품으로 추가
     const newProduct = {
-      name: productName,
-      price: parseFloat(price),
-      description,
-      image,
+      productName: productName,
+      productPrice: parseInt(price),
+      productDesc: description,
+      imageUrls: image,
+      companyId: 1,
     };
-    console.log(newProduct);
+
+    const res = await ProductRegistrationApi(newProduct);
+    console.log(res);
 
     setProductName('');
     setPrice('');
@@ -76,7 +99,7 @@ const ProductUpload = () => {
             className="w-full p-2 border rounded-md bg-gray-200"
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={onImageChange}
           />
         </div>
         <button className="w-full bg-blue-500 text-white p-3 rounded-md mt-10" type="submit" onClick={handleSubmit}>

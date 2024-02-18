@@ -10,12 +10,3 @@ const request = axios.create({
 
 
 export default request;
-
-// export const GetBicycleListApi = async () => {
-//   try {
-//     const response = await request.get('/management_record/get_bicycle_list');
-//     return response.data;
-//   } catch (error) {
-//     return handleApiError(error);
-//   }
-// };
