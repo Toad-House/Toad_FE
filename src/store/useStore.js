@@ -1,11 +1,11 @@
 import create from 'zustand'
 
 export const useStore = create((set) => ({
-  mode: 'seller',
+  mode: 'buyer',
   points: 500,
   userData: {
     nickname: 'junns',
-    id: '',
+    id: '1',
   },
   setMode: (mode) => {
     set((state) => ({ ...state, mode: mode }))

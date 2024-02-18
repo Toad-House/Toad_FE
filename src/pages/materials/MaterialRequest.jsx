@@ -15,7 +15,6 @@ export default function MaterialRequest() {
   const [image, setImage] = useState();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
     const newProduct = {
       companyId: 1,
       materialName: name,
@@ -130,7 +129,7 @@ export default function MaterialRequest() {
             </div>
             <button
               className="w-full bg-blue-500 text-white p-3 rounded-md mt-5"
-              type="submit"
+              type="button"
               onClick={handleSubmit}
             >
               Write Request
