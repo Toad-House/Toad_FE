@@ -1,8 +1,27 @@
 import Navigation from '../../components/Navigation'
 import SearchBar from '../../components/SearchBar'
 import MaterialCard from '../../components/MaterialCard'
+import { MaterialDetailApi } from '../../apis/materials';
+import React, { useState, useEffect } from 'react';
 
 export default function MaterialDetail() {
+
+  const [material, setMaterial] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await MaterialDetailApi();
+        setMaterial(response);
+        console.log(response)
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchData();
+}, []);
+
   return (
     <div>
       <div className="p-12 text-4xl font-bold">
