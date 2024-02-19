@@ -1,7 +1,6 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
-const HistoryCard = ({ historyItem, openModal }) => {
+const BuyerHistoryCard = ({ historyItem, openModal }) => {
   const badgeColor = (state) => {
     switch (state) {
       case 'applied':
@@ -15,10 +14,6 @@ const HistoryCard = ({ historyItem, openModal }) => {
       default:
         return 'bg-gray-500 text-white'
     }
-  }
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/history/company/${historyItem.requestId}`)
   }
 
   const renderButtons = (state) => {
@@ -55,13 +50,11 @@ const HistoryCard = ({ historyItem, openModal }) => {
   }
 
   return (
-    <div 
-    onClick={handleClick}
-    className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md">
+    <div className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md">
       <div className="relative flex flex-row">
         <img
           src={historyItem.imageUrl}
-          alt={historyItem.materialName}
+          alt={historyItem.companyName}
           className="object-cover h-32 my-1 ml-2 rounded-md w-44 mr-7"
         />
         <div>
@@ -95,7 +88,7 @@ const HistoryCard = ({ historyItem, openModal }) => {
               )}
             </div>
             <div className="mt-4">
-              <p className="text-gray-500 text-[13px]">{`${historyItem.userName} / ${historyItem.userContact}`}</p>
+              <p className="text-gray-500 text-[13px]">{`${historyItem.userName} / ${historyItem.companyContact}`}</p>
             </div>
           </div>
         </div>
@@ -107,4 +100,5 @@ const HistoryCard = ({ historyItem, openModal }) => {
   )
 }
 
-export default HistoryCard
+
+export default BuyerHistoryCard

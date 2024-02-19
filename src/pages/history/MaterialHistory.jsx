@@ -3,7 +3,9 @@ import HistoryCard from './HistoryCard'
 import { useNavigate } from 'react-router-dom'
 import HistoryModal from '../../components/HistoryModal'
 import React, { useState, useEffect } from 'react'
-import { GetAllRequestCompanyApi, ChangeRequestStateCompanyApi } from '../../apis/history'
+import { GetAllRequestCompanyApi, ChangeRequestStateCompanyApi,GetAllRequestConsumerApi } from '../../apis/history'
+import {useStore} from "../../store/useStore";
+import BuyerHistoryCard from "./BuyerHistoryCard"
 
 const MaterialHistory = () => {
   const navigate = useNavigate()
@@ -19,11 +21,13 @@ const MaterialHistory = () => {
     cancelReason: "",
     points: 0,
   })
+  const {mode} = useStore();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await GetAllRequestCompanyApi(1)
+        const response = mode === "seller" ? await GetAllRequestCompanyApi(1) : await GetAllRequestConsumerApi(1);
+        console.log(response);
         setHistoryData(response)
       } catch (error) {
         console.error('Error fetching material details:', error)
@@ -86,12 +90,17 @@ const MaterialHistory = () => {
       <div className="max-w-screen p-6 mt-[3%] mx-[12%]">
         <h1 className="mb-6 text-3xl font-semibold">Material History</h1>
         {historyData.map((historyItem) => (
-          console.log(historyItem),
+          mode === 'seller' ? 
           <HistoryCard
             key={historyItem.requestId}
             historyItem={historyItem}
             openModal={openModal}
-          />
+          /> : 
+          <BuyerHistoryCard 
+          key={historyItem.requestId}
+          historyItem={historyItem}
+          openModal={openModal}>
+          </BuyerHistoryCard>
         ))}
       </div>
       <HistoryModal

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
   const [modalContent, setModalContent] = useState({
