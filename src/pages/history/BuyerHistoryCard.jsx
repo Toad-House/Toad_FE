@@ -1,4 +1,5 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom";
 
 const BuyerHistoryCard = ({ historyItem, openModal }) => {
   const badgeColor = (state) => {
@@ -15,33 +16,36 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
         return 'bg-gray-500 text-white'
     }
   }
-
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/history/consumer/${historyItem.requestId}`);
+  }
   const renderButtons = (state) => {
     switch (state) {
       case 'applied':
         return (
           <>
             <button
-              onClick={() => openModal('approved', historyItem.requestId)}
-              className="w-full px-4 py-2 my-2 mb-2 text-white bg-green-500 rounded-md"
-            >
-              Approve
-            </button>
-            <button
               onClick={() => openModal('canceled', historyItem.requestId)}
               className="w-full px-4 py-2 my-2 text-white bg-red-500 rounded-md"
             >
               Cancel
             </button>
+            <button
+              onClick={() => {}}
+              className="w-full px-4 py-2 my-2 mb-2 text-white bg-blue-500 rounded-md"
+            >
+              Edit
+            </button>
           </>
         )
       case 'approved':
         return (
-          <button
-            onClick={() => openModal('completed', historyItem.requestId)}
-            className="px-4 py-2 my-2 text-white bg-blue-500 rounded-md"
+            <button
+            onClick={() => openModal('canceled', historyItem.requestId)}
+            className="w-full px-4 py-2 my-2 text-white bg-red-500 rounded-md"
           >
-            Complete
+            Cancel
           </button>
         )
       default:
@@ -50,7 +54,9 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
   }
 
   return (
-    <div className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md">
+    <div 
+    onClick={handleClick} 
+    className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md">
       <div className="relative flex flex-row">
         <img
           src={historyItem.imageUrl}

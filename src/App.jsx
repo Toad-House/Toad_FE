@@ -10,12 +10,21 @@ import {
   PointPage,
   MaterialHistory,
   ProductBuy,
+  CompanyHistoryDetail,
+  ConsumerHistoryDetail,
 } from './pages'
 
 const ROUTER = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+  },
+  {
+    path: '/history/consumer/:id',
+    element : <ConsumerHistoryDetail />
+  },{
+    path: '/history/company/:id',
+    element: <CompanyHistoryDetail />
   },
   {
     path: '/product/buy',
