@@ -15,19 +15,22 @@ const MaterialHistory = () => {
   const [historyData, setHistoryData] = useState([])
   const [updateData, setUpdateData] = useState({
     requestId: 0,
-    collectionState: "",
-    expectedDate: "",
-    expectedTime: "",
-    cancelReason: "",
+    collectionState: '',
+    expectedDate: '',
+    expectedTime: '',
+    cancelReason: '',
     points: 0,
   })
-  const { mode, userData } = useStore();
+  const { mode, userData } = useStore()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = mode === "seller" ? await GetAllRequestCompanyApi(userData.id) : await GetAllRequestConsumerApi(userData.id);
-        // console.log(response);
+        const response =
+          mode === 'seller'
+            ? await GetAllRequestCompanyApi(1)
+            : await GetAllRequestConsumerApi(1)
+        // console.log(response)
         setHistoryData(response)
       } catch (error) {
         console.error('Error fetching material details:', error)
@@ -39,8 +42,11 @@ const MaterialHistory = () => {
 
   const openModal = (type, requestId) => {
     setModalType(type)
-    setUpdateData(prevState => (
-      { ...prevState, collectionState: type, requestId: requestId }))
+    setUpdateData((prevState) => ({
+      ...prevState,
+      collectionState: type,
+      requestId: requestId,
+    }))
     setModalIsOpen(true)
   }
 
@@ -51,14 +57,20 @@ const MaterialHistory = () => {
   }
 
   const onSave = (content) => {
+    console.log('content.cancelReason:' + content.cancelReason)
     if (content.expectedDate && content.expectedTime) {
-      setUpdateData(prevState => ({ ...prevState, expectedDate: content.expectedDate, expectedTime: content.expectedTime }))
-    }
-    else if (content.points) {
-      setUpdateData(prevState => ({ ...prevState, points: content.points }))
-    }
-    else if (content.cancelReason) {
-      setUpdateData(prevState => ({ ...prevState, cancelReason: content.cancelReason }))
+      setUpdateData((prevState) => ({
+        ...prevState,
+        expectedDate: content.expectedDate,
+        expectedTime: content.expectedTime,
+      }))
+    } else if (content.points) {
+      setUpdateData((prevState) => ({ ...prevState, points: content.points }))
+    } else if (content.cancelReason) {
+      setUpdateData((prevState) => ({
+        ...prevState,
+        cancelReason: content.cancelReason,
+      }))
     }
   }
 
