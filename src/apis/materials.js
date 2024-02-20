@@ -1,22 +1,22 @@
 import formRequest from './formRequest'
-import {request, form_request} from './request'
+import { request, form_request } from './request'
 
 // Material sourcing 등록
 export const MaterialRegistrationApi = async (newProduct) => {
   try {
-    const formData = new FormData();
-    formData.append('companyId', 1);
-    formData.append('materialName', newProduct.materialName);
-    formData.append('minimumQuantity', newProduct.minimumQuantity);
-    formData.append('expectedCondition', newProduct.expectedCondition);
-    formData.append('productId', 1);
-    formData.append('pointsPerWeight', newProduct.pointsPerWeight);
-    formData.append('restrictedArea', newProduct.restrictedArea);
-    formData.append('availableArea', newProduct.availableArea);
-    formData.append('multipartFile', newProduct.multipartFile);
+    const formData = new FormData()
+    formData.append('companyId', 1)
+    formData.append('materialName', newProduct.materialName)
+    formData.append('minimumQuantity', newProduct.minimumQuantity)
+    formData.append('expectedCondition', newProduct.expectedCondition)
+    formData.append('productId', 1)
+    formData.append('pointsPerWeight', newProduct.pointsPerWeight)
+    formData.append('restrictedArea', newProduct.restrictedArea)
+    formData.append('availableArea', newProduct.availableArea)
+    formData.append('multipartFile', newProduct.multipartFile)
     const res = await form_request.post('/material', formData)
     console.log(res)
-    return res.data
+    return res.status
   } catch (error) {
     console.log(error)
   }
@@ -30,7 +30,7 @@ export const SourcingRequestApi = async ({ params }) => {
   }
   try {
     const res = await formRequest.post('/material/request', params)
-    return res.data
+    return res.status
   } catch (error) {
     console.log(error)
   }
@@ -39,7 +39,7 @@ export const SourcingRequestApi = async ({ params }) => {
 // Material Sourcing 검색 api
 export const MaterialSearchApi = async (keyword) => {
   try {
-    console.log("keyword", keyword)
+    console.log('keyword', keyword)
     const res = await request.get(`/material/search?keyword=${keyword}`)
     return res.data
   } catch (error) {
@@ -61,7 +61,7 @@ export const MaterialDetailApi = async (id) => {
 export const GetAllMaterialsApi = async () => {
   try {
     const res = await request.get('/material/all')
-    console.log("res: ", res)
+    console.log('res: ', res)
     return res.data
   } catch (error) {
     console.log(error)

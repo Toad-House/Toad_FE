@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 const BuyerHistoryCard = ({ historyItem, openModal }) => {
   const badgeColor = (state) => {
@@ -16,9 +16,11 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
         return 'bg-gray-500 text-white'
     }
   }
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/history/consumer/${historyItem.requestId}`);
+  const navigate = useNavigate()
+  const handleClick = (e) => {
+    if (!e.target.closest('button')) {
+      navigate(`/history/consumer/${historyItem.requestId}`)
+    }
   }
   const renderButtons = (state) => {
     switch (state) {
@@ -26,23 +28,29 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
         return (
           <>
             <button
-              onClick={() => openModal('canceled', historyItem.requestId)}
+              onClick={(e) => {
+                e.stopPropagation()
+                openModal('canceled', historyItem.requestId)
+              }}
               className="w-full px-4 py-2 my-2 text-white bg-red-500 rounded-md"
             >
               Cancel
             </button>
-            <button
+            {/* <button
               onClick={() => {}}
               className="w-full px-4 py-2 my-2 mb-2 text-white bg-blue-500 rounded-md"
             >
               Edit
-            </button>
+            </button> */}
           </>
         )
       case 'approved':
         return (
-            <button
-            onClick={() => openModal('canceled', historyItem.requestId)}
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              openModal('canceled', historyItem.requestId)
+            }}
             className="w-full px-4 py-2 my-2 text-white bg-red-500 rounded-md"
           >
             Cancel
@@ -54,9 +62,10 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
   }
 
   return (
-    <div 
-    onClick={handleClick} 
-    className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md">
+    <div
+      onClick={handleClick}
+      className="p-4 my-6 bg-white border border-gray-200 rounded-md shadow-md"
+    >
       <div className="relative flex flex-row">
         <img
           src={historyItem.imageUrl}
@@ -75,7 +84,7 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
                 {`${historyItem.collectionState}`}
               </p>
             </div>
-            {(historyItem.collectionState === 'approved') && (
+            {historyItem.collectionState === 'approved' && (
               <div className="flex items-center justify-between mb-3">
                 <p className="text-gray-500">{`Expected Date: ${historyItem.expectedDate} /  Time: ${historyItem.expectedTime}`}</p>
               </div>
@@ -83,7 +92,7 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
             <div className="flex items-center justify-between mb-3">
               <p className="text-gray-600">{`Quantity of Material: ${historyItem.quantityOfMaterial}g`}</p>
               {historyItem.collectionState === 'completed' && (
-                <p className="text-blue-600 ml-6 font-normal">{`Points: ${historyItem.points} P`}</p>
+                <p className="ml-6 font-normal text-blue-600">{`Points: ${historyItem.points} P`}</p>
               )}
             </div>
             <div className="flex items-center justify-between">
@@ -105,6 +114,5 @@ const BuyerHistoryCard = ({ historyItem, openModal }) => {
     </div>
   )
 }
-
 
 export default BuyerHistoryCard

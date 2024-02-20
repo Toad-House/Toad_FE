@@ -46,6 +46,12 @@ export default function MaterialDetail() {
     try {
       const response = await SourcingRequestApi({ params: formData })
       console.log(response)
+      if (response === 200) {
+        alert('Material Pickup Request Form has been completed')
+        navigate(-1)
+      } else {
+        console.error('Unexpected status code:', response)
+      }
     } catch (error) {
       console.error('Error submitting request:', error)
     }
@@ -114,7 +120,7 @@ export default function MaterialDetail() {
                     <h2>Produced Item</h2>
                     <h2>Minimum Quantity</h2>
                   </div>
-                  <div className="flex flex-col w-1/2 gap-4 text-sm font-light text-center text-gray-300 h-1/2">
+                  <div className="flex flex-col w-1/2 gap-4 text-sm font-light text-center text-gray-600 h-1/2">
                     <p>{materialData.expectedCondition}</p>
                     <p>{materialData.materialName}</p>
                     <p>{materialData.minimumQuantity}</p>
@@ -131,13 +137,13 @@ export default function MaterialDetail() {
               <div className="flex flex-col gap-6">
                 <div className="flex mt-4">
                   <h2 className="w-1/2 text-sm">Collection Available Area</h2>
-                  <p className="w-1/2 text-sm font-light text-gray-300">
+                  <p className="w-1/2 text-sm font-light text-gray-600">
                     {materialData.availableArea}
                   </p>
                 </div>
                 <div className="flex">
                   <h2 className="w-1/2 text-sm">Collection Restricted Area</h2>
-                  <p className="w-1/2 text-sm font-light text-gray-300">
+                  <p className="w-1/2 text-sm font-light text-gray-600">
                     {materialData.restrictedArea}
                   </p>
                 </div>
@@ -146,7 +152,9 @@ export default function MaterialDetail() {
 
             {mode === 'buyer' && (
               <div className="mt-8">
-                <div className="mb-2 text-2xl">Request Form</div>
+                <div className="mb-2 text-2xl">
+                  Material Pickup Request Form
+                </div>
                 <hr></hr>
                 <div className="flex flex-col items-center justify-center">
                   <div className="flex p-6 mb-4">
@@ -215,12 +223,14 @@ export default function MaterialDetail() {
               </div>
             )}
           </div>
-          <button
-            type="submit"
-            className="flex h-10 w-1/6 justify-center rounded-xl bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            SUBMIT
-          </button>
+          {mode === 'buyer' && (
+            <button
+              type="submit"
+              className="flex h-10 w-1/6 justify-center rounded-xl bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              SUBMIT
+            </button>
+          )}
         </form>
       </div>
     </div>
