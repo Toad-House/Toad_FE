@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { MaterialRegistrationApi } from '../../apis/materials'
+import { useStore } from '../../store/useStore'
 
 export default function MaterialRequest() {
   const navigate = useNavigate()
+  const { userData } = useStore()
 
   const [name, setName] = useState('')
   const [quantity, setQuantity] = useState('')
@@ -15,7 +17,7 @@ export default function MaterialRequest() {
 
   const handleSubmit = async (e) => {
     const newProduct = {
-      companyId: 1,
+      companyId: userData.id,
       materialName: name,
       minimumQuantity: parseInt(quantity),
       expectedCondition: condition,
@@ -26,6 +28,7 @@ export default function MaterialRequest() {
       multipartFile: image,
     }
     try {
+      console.log("new: ", newProduct)
       const res = await MaterialRegistrationApi(newProduct)
 
       if (res === 200) {

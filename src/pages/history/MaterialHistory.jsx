@@ -3,8 +3,8 @@ import HistoryCard from './HistoryCard'
 import { useNavigate } from 'react-router-dom'
 import HistoryModal from '../../components/HistoryModal'
 import React, { useState, useEffect } from 'react'
-import { GetAllRequestCompanyApi, ChangeRequestStateCompanyApi,GetAllRequestConsumerApi } from '../../apis/history'
-import {useStore} from "../../store/useStore";
+import { GetAllRequestCompanyApi, ChangeRequestStateCompanyApi, GetAllRequestConsumerApi, CancelRequestConsumerApi } from '../../apis/history'
+import { useStore } from "../../store/useStore";
 import BuyerHistoryCard from "./BuyerHistoryCard"
 
 const MaterialHistory = () => {
@@ -21,13 +21,13 @@ const MaterialHistory = () => {
     cancelReason: "",
     points: 0,
   })
-  const {mode} = useStore();
+  const { mode, userData } = useStore();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = mode === "seller" ? await GetAllRequestCompanyApi(1) : await GetAllRequestConsumerApi(1);
-        console.log(response);
+        const response = mode === "seller" ? await GetAllRequestCompanyApi(userData.id) : await GetAllRequestConsumerApi(userData.id);
+        // console.log(response);
         setHistoryData(response)
       } catch (error) {
         console.error('Error fetching material details:', error)
@@ -60,21 +60,47 @@ const MaterialHistory = () => {
     else if (content.cancelReason) {
       setUpdateData(prevState => ({ ...prevState, cancelReason: content.cancelReason }))
     }
-
-    ChangeRequestStateCompanyApi({ params: updateData })
-      .then(() => {
-        GetAllRequestCompanyApi(1)
-          .then(response => {
-            setHistoryData(response);
-          })
-          .catch(error => {
-            console.error('Error fetching material details:', error);
-          });
-      })
-      .catch(error => {
-        console.error('Error changing request state:', error);
-      });
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        mode === "seller" ?
+          ChangeRequestStateCompanyApi({ params: updateData })
+            .then(() => {
+              GetAllRequestCompanyApi(userData.id)
+                .then(response => {
+                  setHistoryData(response);
+                })
+                .catch(error => {
+                  console.error('Error fetching material details:', error);
+                });
+            })
+            .catch(error => {
+              console.error('Error changing request state:', error);
+            })
+          :
+          CancelRequestConsumerApi({ params: updateData })
+            .then(() => {
+              GetAllRequestConsumerApi(userData.id)
+                .then(response => {
+                  setHistoryData(response);
+                })
+                .catch(error => {
+                  console.error('Error fetching material details:', error);
+                });
+            })
+            .catch(error => {
+              console.error('Error changing request state:', error);
+            });
+      } catch (error) {
+        console.error('Error fetching material details:', error)
+      }
+    }
+
+    if (updateData.cancelReason || (updateData.expectedDate && updateData.expectedTime) || (updateData.points))
+      fetchData();
+  }, [updateData])
 
   return (
     <div>
@@ -89,18 +115,18 @@ const MaterialHistory = () => {
       </button>
       <div className="max-w-screen p-6 mt-[3%] mx-[12%]">
         <h1 className="mb-6 text-3xl font-semibold">Material History</h1>
-        {historyData.map((historyItem) => (
-          mode === 'seller' ? 
-          <HistoryCard
-            key={historyItem.requestId}
-            historyItem={historyItem}
-            openModal={openModal}
-          /> : 
-          <BuyerHistoryCard 
-          key={historyItem.requestId}
-          historyItem={historyItem}
-          openModal={openModal}>
-          </BuyerHistoryCard>
+        {historyData && historyData.map((historyItem) => (
+          mode === 'seller' ?
+            <HistoryCard
+              key={historyItem.requestId}
+              historyItem={historyItem}
+              openModal={openModal}
+            /> :
+            <BuyerHistoryCard
+              key={historyItem.requestId}
+              historyItem={historyItem}
+              openModal={openModal}>
+            </BuyerHistoryCard>
         ))}
       </div>
       <HistoryModal

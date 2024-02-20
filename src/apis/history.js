@@ -24,6 +24,7 @@ export const GetRequestDetailCompanyApi = async (id) => {
 // 회사 재료 제공 요청 상태 변경
 export const ChangeRequestStateCompanyApi = async ({ params }) => {
     try {
+        console.log("params", params)
         const res = await request.post('/company/request', JSON.stringify(params))
         return res.data
     } catch (error) {

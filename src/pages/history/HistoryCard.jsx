@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const HistoryCard = ({ historyItem, openModal }) => {
-  console.log(historyItem)
+  // console.log(historyItem)
   const badgeColor = (state) => {
     switch (state) {
       case 'applied':
