@@ -42,12 +42,8 @@ const MaterialHistory = () => {
 
   const openModal = (type, requestId) => {
     setModalType(type)
-    setUpdateData((prevState) => ({
-      ...prevState,
-      collectionState: type,
-      requestId: requestId,
-    }))
     setModalIsOpen(true)
+    setRequestId(requestId)
   }
 
   const closeModal = () => {
@@ -57,19 +53,28 @@ const MaterialHistory = () => {
   }
 
   const onSave = (content) => {
-    console.log('content.cancelReason:' + content.cancelReason)
+    console.log('content.cancelReason:' + content.points)
     if (content.expectedDate && content.expectedTime) {
       setUpdateData((prevState) => ({
         ...prevState,
+        collectionState: modalType,
+        requestId: requestId,
         expectedDate: content.expectedDate,
         expectedTime: content.expectedTime,
       }))
     } else if (content.points > 0) {
       console.log("points")
-      setUpdateData((prevState) => ({ ...prevState, points: content.points }))
+      setUpdateData((prevState) => ({
+        ...prevState,
+        collectionState: modalType,
+        requestId: requestId,
+        points: content.points
+      }))
     } else if (content.cancelReason) {
       setUpdateData((prevState) => ({
         ...prevState,
+        collectionState: modalType,
+        requestId: requestId,
         cancelReason: content.cancelReason,
       }))
     }
@@ -107,6 +112,14 @@ const MaterialHistory = () => {
             .catch(error => {
               console.error('Error changing request state:', error);
             });
+        setUpdateData({
+          requestId: 0,
+          collectionState: '',
+          expectedDate: '',
+          expectedTime: '',
+          cancelReason: '',
+          points: 0,
+        })
       } catch (error) {
         console.error('Error fetching material details:', error)
       }

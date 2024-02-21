@@ -2,14 +2,21 @@ import React, { useState } from 'react'
 
 const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
   const [modalContent, setModalContent] = useState({
-    expectedDate: '',
-    expectedTime: '',
-    cancelReason: '',
-    points: 0,
+    expectedDate: "",
+    expectedTime: "",
+    cancelReason: "",
+    points: 0
   })
+
 
   const handleSave = () => {
     onSave(modalContent)
+    setModalContent({
+      expectedDate: '',
+      expectedTime: '',
+      cancelReason: '',
+      points: 0,
+    })
     closeModal()
   }
 
@@ -25,24 +32,14 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
             <input
               type="date"
               value={modalContent.expectedDate}
-              onChange={(e) =>
-                setModalContent((prevState) => ({
-                  ...prevState,
-                  expectedDate: e.target.value,
-                }))
-              }
+              onChange={(e) => setModalContent(prevState => ({...prevState, expectedDate: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
             <label className="block mb-2">Select Time:</label>
             <input
               type="time"
               value={modalContent.expectedTime}
-              onChange={(e) =>
-                setModalContent((prevState) => ({
-                  ...prevState,
-                  expectedTime: e.target.value,
-                }))
-              }
+              onChange={(e) => setModalContent(prevState => ({...prevState, expectedTime: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
           </>
@@ -56,12 +53,7 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
             <label className="block mb-2">Reason:</label>
             <textarea
               value={modalContent.cancelReason}
-              onChange={(e) =>
-                setModalContent((prevState) => ({
-                  ...prevState,
-                  cancelReason: e.target.value,
-                }))
-              }
+              onChange={(e) => setModalContent(prevState => ({...prevState, cancelReason: e.target.value}))}
               maxLength={100}
               placeholder="Enter your reason here"
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
@@ -76,12 +68,7 @@ const HistoryModal = ({ isOpen, closeModal, onSave, modalType, requestId }) => {
             <input
               type="number"
               value={modalContent.points}
-              onChange={(e) =>
-                setModalContent((prevState) => ({
-                  ...prevState,
-                  points: e.target.value,
-                }))
-              }
+              onChange={(e) => setModalContent(prevState => ({...prevState, points: e.target.value}))}
               className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
           </>
