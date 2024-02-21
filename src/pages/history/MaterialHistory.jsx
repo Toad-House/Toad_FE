@@ -77,6 +77,7 @@ const MaterialHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("check")
         mode === "seller" ?
           ChangeRequestStateCompanyApi({ params: updateData })
             .then(() => {
