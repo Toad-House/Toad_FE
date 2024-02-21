@@ -64,7 +64,8 @@ const MaterialHistory = () => {
         expectedDate: content.expectedDate,
         expectedTime: content.expectedTime,
       }))
-    } else if (content.points) {
+    } else if (content.points > 0) {
+      console.log("points")
       setUpdateData((prevState) => ({ ...prevState, points: content.points }))
     } else if (content.cancelReason) {
       setUpdateData((prevState) => ({
@@ -111,7 +112,7 @@ const MaterialHistory = () => {
       }
     }
 
-    if (updateData.cancelReason || (updateData.expectedDate && updateData.expectedTime) || (updateData.points))
+    if (updateData.cancelReason || (updateData.expectedDate && updateData.expectedTime) || (updateData.points > 0))
       fetchData();
   }, [updateData])
 

@@ -7,6 +7,7 @@ import { useStore } from '../../store/useStore'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import { UserPointHistoryApi, CompanyPointHistoryApi } from '../../apis/point'
+import CompanyPointHistoryCard from './CompanyPointHistoryCard'
 
 const PointPage = () => {
   const { points, userData, mode, setPoints } = useStore()
@@ -84,7 +85,9 @@ const PointPage = () => {
               <div className="p-8 my-4 bg-gray-100 shadow-md rounded-xl">
                 <p className="text-lg font-semibold">TOTAL POINTS</p>
                 <p className="pt-4 text-3xl font-bold text-right text-blue-600">
-                  {points} P
+                  {pointHistory && pointHistory[0] && pointHistory[0].totalPoint
+                    ? `${pointHistory[0].totalPoint} P`
+                    : '0'}
                 </p>
               </div>
               {mode === 'seller' && (
@@ -140,11 +143,12 @@ const PointPage = () => {
               {pointHistory &&
                 mode === 'seller' &&
                 pointHistory.map((historyItem, index) => (
-                  <UserPointHistoryCard
+                  console.log("dpd", historyItem),
+                  <CompanyPointHistoryCard
                     key={index}
                     productName={historyItem.productName}
                     userName={historyItem.userName}
-                    receiveOrUse={historyItem.receiveOrUse}
+                    receiveOrUse={historyItem.chargeOrPay}
                     point={historyItem.point.toString()}
                   />
                 ))}
