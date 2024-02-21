@@ -200,7 +200,7 @@ export default function MaterialDetail() {
                     <div className="grid gap-x-4 items-center justify-center grid-cols-[200px_300px_50px] ml-10">
                       <p className="text-lg text-end">Quanitity of Material</p>{' '}
                       <input
-                        className="p-4 ml-4 text-sm text-center text-gray-300 focus:outline-none bg-slate-50 rounded-xl"
+                        className="p-4 ml-4 text-sm text-center text-gray-600 focus:outline-none bg-slate-50 rounded-xl"
                         type="number"
                         value={quantityOfMaterial}
                         onChange={(e) => setQuantityOfMaterial(e.target.value)}
@@ -211,7 +211,7 @@ export default function MaterialDetail() {
                         value={collectionArea}
                         onChange={(e) => setCollectionArea(e.target.value)}
                         type="text"
-                        className="p-4 ml-4 text-sm text-center text-gray-300 focus:outline-none bg-slate-50 rounded-xl"
+                        className="p-4 ml-4 text-sm text-center text-gray-600 focus:outline-none bg-slate-50 rounded-xl"
                       ></input>
                     </div>
                   </div>

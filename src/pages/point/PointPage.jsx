@@ -38,32 +38,32 @@ const PointPage = () => {
     <div className="p-12">
       <Navigation />
 
-      <div className="mt-8  p-24">
+      <div className="p-24 mt-8">
         <button
           onClick={() => navigate(-1)}
-          className=" text-gray-400 my-3 text-sm font-base pl-2 mr-4"
+          className="pl-2 my-3 mr-4 text-sm text-gray-400  font-base"
         >
           {'< BACK'}
         </button>
-        <div className=" m-2 flex text-xl font-base">
+        <div className="flex m-2 text-xl  font-base">
           <h1 className="">My Page</h1>
           <h1 className="px-4">{'>'}</h1>
           <h1 className="">Points</h1>
         </div>
         <div className="flex mt-4">
-          <div className="w-2/5 border-r pr-12">
+          <div className="w-2/5 pr-12 border-r">
             {/* 세로 선 좌측 */}
             <div className="mb-4">
-              <div className="bg-gray-100 p-8 rounded-xl shadow-md my-4">
-                <p className="font-semibold text-lg">TOTAL POINTS</p>
-                <p className="text-3xl text-right font-bold text-blue-600 pt-4">
+              <div className="p-8 my-4 bg-gray-100 shadow-md rounded-xl">
+                <p className="text-lg font-semibold">TOTAL POINTS</p>
+                <p className="pt-4 text-3xl font-bold text-right text-blue-600">
                   {points} P
                 </p>
               </div>
               {mode === 'seller' && (
                 <button
                   onClick={openModal}
-                  className="mt-4 bg-blue-500 text-white p-2 rounded-xl font-semibold shadow-md w-full h-16 text-lg"
+                  className="w-full h-16 p-2 mt-4 text-lg font-semibold text-white bg-blue-500 shadow-md rounded-xl"
                 >
                   Charge Points
                 </button>
@@ -75,7 +75,7 @@ const PointPage = () => {
               className="Modal p-[25%]"
               contentLabel="Charge Points Modal"
             >
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-semibold">Charge Points</h2>
                 <button className="text-xl font-bold" onClick={closeModal}>
                   X
@@ -86,10 +86,10 @@ const PointPage = () => {
                 placeholder="Enter points to charge"
                 value={chargePoints}
                 onChange={handleInputChange}
-                className="w-full p-2 border rounded-md mb-4"
+                className="w-full p-2 mb-4 border rounded-md"
               />
               <button
-                className="bg-blue-500 text-white p-2 rounded-md"
+                className="p-2 text-white bg-blue-500 rounded-md"
                 onClick={handleChargePoints}
               >
                 Charge
@@ -97,8 +97,7 @@ const PointPage = () => {
             </Modal>
           </div>
           <div className="w-3/5 pl-12">
-            {/* 세로 선 우측 */}
-            <h2 className="text-lg font-semibold mb-4">Point History</h2>
+            <h2 className="mb-4 text-lg font-semibold">Point History</h2>
             <div className="flex flex-col gap-4">
               {/* 포인트 사용 내역 */}
               <PointHistoryCard name="Nukak" item="wallet" points="-500" />

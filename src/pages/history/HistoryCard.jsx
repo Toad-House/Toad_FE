@@ -50,7 +50,10 @@ const HistoryCard = ({ historyItem, openModal }) => {
       case 'approved':
         return (
           <button
-            onClick={() => openModal('completed', historyItem.requestId)}
+            onClick={(e) => {
+              e.stopPropagation()
+              openModal('completed', historyItem.requestId)
+            }}
             className="px-4 py-2 my-2 text-white bg-blue-500 rounded-md"
           >
             Complete
