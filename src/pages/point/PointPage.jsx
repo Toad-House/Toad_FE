@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Navigation from '../../components/Navigation'
-import PointHistoryCard from './PointHistoryCard'
+import UserPointHistoryCard from './UserPointHistoryCard'
 import { useStore } from '../../store/useStore'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
@@ -127,13 +127,25 @@ const PointPage = () => {
             <h2 className="mb-4 text-lg font-semibold">Point History</h2>
             <div className="flex flex-col gap-4">
               {pointHistory &&
+                mode === 'buyer' &&
                 pointHistory.map((historyItem, index) => (
-                  <PointHistoryCard
+                  <UserPointHistoryCard
                     key={index}
                     productName={historyItem.productName}
                     companyName={historyItem.companyName}
                     receiveOrUse={historyItem.receiveOrUse}
-                    point={historyItem.point.toString()} // Convert point to string if it's a number
+                    point={historyItem.point.toString()}
+                  />
+                ))}
+              {pointHistory &&
+                mode === 'seller' &&
+                pointHistory.map((historyItem, index) => (
+                  <UserPointHistoryCard
+                    key={index}
+                    productName={historyItem.productName}
+                    userName={historyItem.userName}
+                    receiveOrUse={historyItem.receiveOrUse}
+                    point={historyItem.point.toString()}
                   />
                 ))}
             </div>
