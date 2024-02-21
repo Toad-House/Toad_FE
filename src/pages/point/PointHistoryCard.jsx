@@ -1,18 +1,22 @@
 import React from 'react'
 
-const PointHistoryCard = ({ name, item, points }) => {
+const PointHistoryCard = ({
+  productName,
+  companyName,
+  receiveOrUse,
+  point,
+}) => {
   return (
-    <div className="bg-white px-12 py-8 rounded-xl shadow-md border-gray-100 border">
-      <div className="flex justify-between items-center">
+    <div className="px-12 py-8 bg-white border border-gray-100 shadow-md rounded-xl">
+      <div className="flex items-center justify-between">
         <div className="flex">
-          <h3 className="text-lg font-semibold">{name}</h3>
-          {item && <p className="px-3">{' / '}</p>}
-          <p className="text-gray-500">{item}</p>
+          <h3 className="text-lg font-semibold">{productName}</h3>
+          {companyName && <p className="px-3">{' / '}</p>}
+          <p className="text-gray-500">{companyName}</p>
         </div>
-        <div
-          className={points.startsWith('-') ? 'text-red-500' : 'text-green-500'}
-        >
-          {points}
+        <div className={receiveOrUse ? 'text-red-500' : 'text-green-500'}>
+          {receiveOrUse ? <span>-</span> : <></>}
+          {point}
         </div>
       </div>
     </div>

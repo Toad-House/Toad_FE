@@ -1,4 +1,3 @@
-import formRequest from './formRequest'
 import { request, form_request } from './request'
 
 // Material sourcing 등록
@@ -29,7 +28,7 @@ export const SourcingRequestApi = async ({ params }) => {
     console.log(key, ':', params.get(key))
   }
   try {
-    const res = await formRequest.post('/material/request', params)
+    const res = await form_request.post('/material/request', params)
     return res.status
   } catch (error) {
     console.log(error)

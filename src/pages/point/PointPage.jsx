@@ -1,18 +1,45 @@
 // PointPage.js
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navigation from '../../components/Navigation'
 import PointHistoryCard from './PointHistoryCard'
 import { useStore } from '../../store/useStore'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
+import { UserPointHistoryApi, CompanyPointHistoryApi } from '../../apis/point'
 
 const PointPage = () => {
-  const { points, mode, setPoints } = useStore()
+  const { points, userData, mode, setPoints } = useStore()
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [chargePoints, setChargePoints] = useState('')
+  const [pointHistory, setPointHistory] = useState([])
 
+  useEffect(() => {
+    const fetchPointHistory = async () => {
+      try {
+        const id = userData.id
+        if (mode === 'seller') {
+          const historyData = await CompanyPointHistoryApi({
+            params: { companyId: id },
+          })
+          setPointHistory(historyData)
+        } else if (mode === 'buyer') {
+          const historyData = await UserPointHistoryApi({
+            params: { userId: id },
+          })
+          setPointHistory(historyData)
+        } else {
+          console.error('Not expected mode')
+        }
+        console.log('pointHistory:' + pointHistory)
+      } catch (error) {
+        console.error('Error fetching point history:', error)
+      }
+    }
+
+    fetchPointHistory()
+  }, [userData.id])
   const openModal = () => {
     setModalIsOpen((prev) => !prev)
   }
@@ -41,11 +68,11 @@ const PointPage = () => {
       <div className="p-24 mt-8">
         <button
           onClick={() => navigate(-1)}
-          className="pl-2 my-3 mr-4 text-sm text-gray-400  font-base"
+          className="pl-2 my-3 mr-4 text-sm text-gray-400 font-base"
         >
           {'< BACK'}
         </button>
-        <div className="flex m-2 text-xl  font-base">
+        <div className="flex m-2 text-xl font-base">
           <h1 className="">My Page</h1>
           <h1 className="px-4">{'>'}</h1>
           <h1 className="">Points</h1>
@@ -99,10 +126,16 @@ const PointPage = () => {
           <div className="w-3/5 pl-12">
             <h2 className="mb-4 text-lg font-semibold">Point History</h2>
             <div className="flex flex-col gap-4">
-              {/* 포인트 사용 내역 */}
-              <PointHistoryCard name="Nukak" item="wallet" points="-500" />
-              <PointHistoryCard name="Point Top-up" points="+2000" />
-              {/* 필요한 만큼 반복 */}
+              {pointHistory &&
+                pointHistory.map((historyItem, index) => (
+                  <PointHistoryCard
+                    key={index}
+                    productName={historyItem.productName}
+                    companyName={historyItem.companyName}
+                    receiveOrUse={historyItem.receiveOrUse}
+                    point={historyItem.point.toString()} // Convert point to string if it's a number
+                  />
+                ))}
             </div>
           </div>
         </div>
