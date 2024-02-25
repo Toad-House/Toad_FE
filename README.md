@@ -1,41 +1,81 @@
-## 실행
+## EXECUTE
+**Install dependencies:**
 
-`$ yarn install` <-- yarn 설치 후 yarn install로 dependencies 다운로드<br/>
-`$ yarn start` <-- 빌드 명령어
+```bash
+$ yarn install
+```
 
-## 폴더 구조
+This command downloads and installs the dependencies required for the project.
+
+**Start the project:**
+
+```bash
+$ yarn start
+```
+
+This command initiates the build process for the project and starts the application.
+
+
+
+<br/><br/>
+
+## FOLDER STRUCTURE
 
 > /src
 >
 > - /assets
 > - /components
-> - /context
-> - /hooks
+> - /apis
 > - /pages
-> - /utils
+> - /store
 
-### assets
+- **/assets:** This directory serves as a repository for images and other static files. It's the designated location for storing non-code assets used throughout the application.
 
-공통으로 사용하는 정적 파일들을 저장하는 곳. 이미지/SVG파일/글로벌한 css 같은 자산들을 포함
+- **/components:** Within this folder, reusable components are stored. These components are designed to be used across different parts of the application, contributing to a modular and maintainable codebase.
 
-### components
+- **/apis:** The /apis directory is dedicated to handling API-related logic. Code responsible for making API calls and managing data from the server is likely stored here, promoting a clean separation of concerns.
 
-재사용가능한 컴포넌트들을 저장.
+- **/pages:** In the /pages folder, each component corresponds to a specific page in your application. This structure aids in organizing and managing the components associated with distinct sections or views.
 
-### context
+- **/store:** The /store directory houses logic related to global state management using Zustand. This is where you manage the application's overarching state, allowing for centralized control and access to shared data across various components.
 
-공통으로 사용하는 컨텍스트, 상태. 전역 상태나 테마와 같은 공통된 데이터 처리
+<br/><br/>
 
-### hooks
 
-공통으로 사용하는 훅들. 재사용 가능한 커스텀 훅들을 저장하는 공간.
-
-### pages
-
-각각의 페이지를 별도의 디렉토리로 나눠서 구성. 해당 페이지에 필요한 컴포넌트 및 관련 파일들을 포함.
-
-### utils
-
-유틸 함수들. 각 유틸함수는 순수 함수로 구성한다.
-
-(파일 하나당 유틸 함수 하나만 export 하고 디렉토리 내부에 index.js를 둬서 재 export하게 해서 사용)
+## FEATURES
+### Business Owner Features
+1. Acquiring Materials
+Input: Types of materials, Quantity, Desired condition, Produced items, Points per weight, Pickup restrictions/available areas
+Points per weight are flexible, akin to delivery tips on food delivery platforms.
+Notification: Inform users if provided materials are in a lower condition than expected, indicating that points may not be awarded.
+2. Confirmation of Material Pickup Requests
+Review material supply requests: Quantity, Condition images, Pickup location
+Confirm or cancel pickup requests, set pickup dates.
+Cancellation requires providing a reason.
+Mark pickups as complete and award points based on material condition.
+3. Upcycled Product Upload
+Input: Main product image (thumbnail), Product description, FAQ, etc.
+Include review and 1-to-1 inquiry sections.
+4. Sales Record Review
+Access product-specific sales records.
+5. Point Usage History + Recharge
+Preload and utilize points.
+Review point usage history.
+### Consumer Features
+1. Material Supply Request
+Input: Quantity, Condition images, Pickup location
+Users can send pickup requests by pressing the request button on material search listings.
+2. Purchase of Upcycled Products
+Browse and purchase upcycled products.
+3. My Page
+Material Supply History
+Check pickup confirmation/cancellation status.
+Review points earned upon material pickup.
+(Additional) Write reviews or rate business owners.
+Product Purchase History
+Write reviews.
+My Written Reviews
+Inquiries I've Made
+4. Point Accumulation/Usage History
+Review points earned for material supply.
+Review points used.
